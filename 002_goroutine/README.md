@@ -223,3 +223,71 @@ func min(a []int) int {
 }
 
 ```
+
+### Channel 
+
+채널도 First Class Citizen 이다.  
+채널은 양방향 채널이 있고, 단방향 채널이 있습니다.  
+양방향 채널은 자연스럽게 단방향 채널로 변환해서 쓸 수 있습니다. 
+
+```go
+package main
+
+func main()  {
+	c1 := make(chan int)
+	var c2 chan int= c1 // c1 과 c2는 동일한 채널이다. 
+	var c3 <-chan int= c1  // 자료를 뺄수만 잇는 채널의 자료형 
+	var c4 chan<- int = c1   // 자료를 넣을수만 있는 채널의 자료형
+}
+```
+
+### 일대일 단방향 채널 소통 
+
+- channel이 호출되는 갯수를 알고 있는 경우 
+
+```go
+package main
+
+import "fmt"
+
+func Example_simpleChannel() {
+	c := make(chan int)
+	go func() {
+		c <- 1
+		c <- 2
+		c <- 3
+	}()
+
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+}
+```
+
+- channel이 호출되는 갯수를 모르는 경우
+
+채널 하나를 만들어서 넘겨주고 넘겨받는 것이 깔끔해보이지 않기 때문에 주로 함수가 채널을 반환하게 만드는 패턴을 쓰게 됩니다. 
+
+```go
+package main
+
+import "fmt"
+
+func Example_simpleChannelWithDynamicCount() {
+	c := func() <-chan int {
+		c := make(chan int)
+		go func() {
+			defer close(c) // 보내는 쪽에서 close(c)로 채널을 마지막에 닫아주었음.
+			c <- 1
+			c <- 2
+			c <- 3
+		}()
+		return c
+	}()
+
+	for num := range c {
+		fmt.Println(num)
+	}
+}
+
+```

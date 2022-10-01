@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	Example_simpleChannel()
+
 	FindMinimumValue()
 
 	// FileDownloadAndZipIt()
