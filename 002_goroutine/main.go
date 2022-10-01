@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	ExampleFibonacci()
+
 	Example_simpleChannel()
 
 	FindMinimumValue()
