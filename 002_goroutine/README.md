@@ -92,8 +92,78 @@ func main() {
 파일이 다운로드 되기도 전에 압축하려고 들 수 있기 때문에 압축이 되지 않습니다. 저 위의 코드에 따르면 각각의 파일을 다운로드 하는 것과 압축하는 것 중 
 어느 것을 먼저 수행하여도 좋은 동시성있는 작업들입니다. 그러나 실제로는 그렇지 않습니다. 파일 다운로드가 완료되지 않으면 압축도 할수 없습니다.  
 즉, 압축 작업은 파일들이 모두 다운로드될 때까지 기다린후 수행되야 되겠습니다. 즉, 압축 작업은 파일들이 모두 다운로드 될때까지 기다링 후 수행해야 되겠습니다. 
-이럴 때 이용할 수 있는 것이 sync.WaitGroup입니다. 
+이럴 때 이용할 수 있는 것이 sync.WaitGroup입니다.
 
+```go
+package main
+
+import "sync"
+
+func main() {
+
+	var wg sync.WaitGroup
+	
+	urls := []string{
+		"http://image.com/img01.jpg",
+		"http://image.com/img02.jpg",
+		"http://image.com/img03.jpg",
+	}
+
+	wg.Add(len(urls))
+
+	for _, url := range urls {
+		go func(url string) {
+			defer wg.Done()
+			if _, err := Download(url); err != nil {
+				log.Fatal(err)
+			}
+		}(url)
+	}
+	
+	wg.Wait()
+
+	filenames, err := filepath.Glob("*.jpg")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = WriteZip("images.zip", filenames)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+wg 에는 기본 값이 0으로 맞춰져 있는 카운터가 들어가 있습니다. Wait() 함수는 이 카운터가 0이 될때까지 기다립니다. Add() 함수는 호출될 때 마다 숫자를 더합니다. 
+wg.Done()은 사실상 wg.Add(-1)과 같다고 보시면 됩니다.   
+
+그렇기 때문에 처음에 WaitGroup을 만들자마자 URL 개수만큼 카운터를 증가시키고 각각의 고루틴에서는 작업이 완료될 때까지 카운터를 감소시킵니다. 모든 고루틴이 끝나면 
+카운터가 0이 되는데, 이 상태가 되기전까지는 wg.Wait() 부분에서 멈춰있게 됩니다.
+
+미리 고루틴이 몇 개 생길지 알기 때문에 이렇게 작성이 가능합니다만, 고루틴이 몇개 생길지 알기 어렵거나 따로 수를 세어야 알 수 있는 경우에는 고루틴 띄워보내기 전에 
+wg.Add(1)을 수행하여 하나씩 카운터를 증가시킬 수 있습니다.
+
+```go
+package main
+
+import "log"
+
+func main() {
+	var wg sync.WaitGroup
+	for _, url := range urls {
+		wg.Add(1)
+		go func(url string) {
+			defer wg.Done()
+			if _, err := download(url); err != nil {
+				log.Fatal(err)
+			}
+		}(url)
+	}
+	wg.Wait()
+}
+```
 
 
 
