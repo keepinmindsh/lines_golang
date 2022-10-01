@@ -6,6 +6,13 @@ import (
 )
 
 func main() {
+
+	FindMinimumValue()
+
+	// FileDownloadAndZipIt()
+}
+
+func FileDownloadAndZipIt() {
 	urls := []string{
 		"http://image.com/img01.jpg",
 		"http://image.com/img02.jpg",

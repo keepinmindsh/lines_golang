@@ -25,9 +25,10 @@ func Download(url string) (string, error) {
 		return "", err
 	}
 
-	defer f.Close()
+	// todo - f.Close 안됨..?
+	// defer f.Close()
 
-	_, err := io.Copy(f, resp.Body)
+	_, err = io.Copy(f, resp.Body)
 
 	return filename, err
 }
@@ -55,7 +56,10 @@ func WriteZip(outFileName string, filenames []string) error {
 		if err != nil {
 			return err
 		}
-		defer f.Close()
+
+		// todo f.Close() 동작안함 ...?
+		//defer f.Close()
+
 		_, err = io.Copy(w, f)
 		if err != nil {
 			return err
