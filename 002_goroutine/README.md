@@ -290,4 +290,63 @@ func Example_simpleChannelWithDynamicCount() {
 	}
 }
 
+``` 
+
+- 생성기 패턴 ( 채널 활용 )
+  - 생성하는 쪽에서는 상태 저장 방법을 복작하게 고민할 필요가 없다. 
+  - 받는 쪽에서는 for의 range를 이용할 수 있다. 
+  - 채널 버퍼를 이용하면 멀티 코어를 활용하거나 입출력 성능 상의 장점을 이용할 수 있다. 
+
+```go
+package main
+
+import "fmt"
+
+func FibonacciWithChannel(max int) <-chan int {
+	c := make(chan int)
+
+	go func() {
+		defer close(c)
+		a, b := 0, 1
+		for a <= max {
+			c <- a
+			a, b = b, a+b
+		}
+	}()
+	return c
+}
+
+func ExampleFibonacci() {
+	
+	fmt.Println("FibonacciWithChannel")
+
+	for fib := range FibonacciWithChannel(15) {
+		fmt.Print(fib, ",")
+	}
+
+	fmt.Println(" ")
+}
+
 ```
+
+- 버퍼 있는 채널 
+
+버퍼가 있는 채널은 아래와 같이 구성할 수 있다.  
+버퍼의 장점은 보내는 쪽과 받는 쪽의 코드가 균일한 속도로 수행되지 않는 경우입니다. 사실 입출력 역시 한꺼번에 이루어지는 경우가 많지만, 
+입출력은 균일한 속도로 이루어진다고 해도, 패턴에 맞는 결과가 몰려 있을 수도 있고 듬성듬성 나타날 수도 있습니다. 이 때 버퍼를 만들어주면, 
+이두 고루틴 간에 어느 정도 격차가 생겨도 계속 동작할 수 있기 때문에 성능 향상이 일어날 수 있습니다.  
+
+**동시성은 강력하지만 복잡할 수 있으므로 알려진 패턴을 따르시는 것이 좋삽느디ㅏ. 버퍼 없는 채널로 동작하는 코드를 만들고 필요에 따라 성능 향상을 위하여 버퍼 값을 조절하는 것이 좋겠습니다.** 
+
+```go
+package main
+
+func main()  {
+	c := make(chan int, 10)
+    
+}
+```
+
+
+
+
