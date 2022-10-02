@@ -12,7 +12,7 @@ func main(){
 }
 ```
 
-# 문자열 및 논리 연산자 / 연산자
+# 문자열 및 논리 연산자, 연산자
 
 ```go 
 package main
@@ -176,8 +176,8 @@ func main(){
 ```
 
 # 흐름제어
-```go 
 
+```go 
 package main
 
 import "fmt"
@@ -248,14 +248,15 @@ func main(){
 
   fmt.Println(total1/float64(len(x)))
 }
+```
 
+```go
 package main
 
 import "fmt"
 
-func main() {
-  
-    // arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
+func main() { 
+	// arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
     // new와는 달리 해당 타입이 포인터 값이 아닌 값 그 자체를 반환한다. 
 	arr := make([]float64, 5 )
 	
@@ -300,7 +301,9 @@ func main() {
     // Buffered
     c2 := make(chan int, 10)
 }
+```
 
+```go
 package main
 
 import "fmt"
@@ -315,13 +318,11 @@ func main(){
 
 	fmt.Println(name["OK"], name["haha"])
 }
-
 ```
 
 # 함수
 
 ```go 
-
 package main
 
 import "fmt"
@@ -370,7 +371,6 @@ func add(args ...int) int {
 # 함수의 Closure
 
 ```go 
-
 package main
 
 import "fmt"
@@ -401,7 +401,6 @@ func factorial(x uint) uint {
   }
   return x * factorial(x-1)
 }
-
 ```
 
 # 함수 지연 / Fanic / 복구
@@ -424,8 +423,10 @@ func first() {
 
 func second() {
   fmt.Println("2st")
-}            
+}   
+```
 
+```go
 package main
 
 import "fmt"
@@ -441,13 +442,11 @@ func main() {
 
 	panic("PANIC")
 }
-
 ```
 
 # 함수 포인터
 
 ```go 
-
 package main
 
 import "fmt"
@@ -461,7 +460,9 @@ func main() {
 func zero(xPtr *int) {
   *xPtr = 0
 } 
+```
 
+```go
 package main
 
 import "fmt"
@@ -475,13 +476,11 @@ func main() {
 	one(xPtr)
 	fmt.Println(*xPtr)
 }
-
 ```
 
 # 구조체
 
 ```go 
-
 package main
 
 import "fmt"
@@ -515,13 +514,11 @@ func (c *Circle) area() float64 {
 func circleArea(c Circle) float64 {
   return c.r * c.r
 }                             
-  
 ```
 
 # GoRoutine
 
 ```go 
-
 package main
 
 import "fmt"
@@ -539,14 +536,12 @@ func f(n int) {
   for i := 0; i < 10; i++ {
     fmt.Println(n, ":", i)
   }
-}
-       
+}    
 ```
 
 # Channel 을 이용한 GoRoutine의 활용
 
 ```go 
-
 package main
 
 import (
@@ -592,7 +587,9 @@ func main() {
   var input string
   fmt.Scanln(&input)
 }
+```
 
+```go
 package main
 
 import (
@@ -637,5 +634,5 @@ func main() {
 	var input string
 	fmt.Scanln(&input)
 }
-
+}
 ```
