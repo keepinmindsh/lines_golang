@@ -503,3 +503,111 @@ func FanoutMain() {
 
 - Fan-In : 논리회로에서 주로 쓰이는 용어로 하나의 게이트에 여러개의 입력선이 들어가는 경우를 팬인이라고 합니다. 
 
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func FanIn(ins ...<-chan int) <-chan int {
+	out := make(chan int)
+	var wg sync.WaitGroup
+	wg.Add(len(ins))
+	for _, in := range ins {
+		go func(in <-chan int) {
+			defer wg.Done()
+			for num := range in {
+				out <- num
+			}
+		}(in)
+	}
+	go func() {
+		wg.Wait()
+		close(out)
+	}()
+	return out
+}
+
+func ExampleFanIn() {
+	c1 := make(chan int, 10)
+	c2 := make(chan int, 10)
+	c3 := make(chan int, 10)
+
+	for i := 0; i < 10; i++ {
+		c1 <- i
+	}
+	for i := 0; i < 10; i++ {
+		c2 <- i
+	}
+	for i := 0; i < 10; i++ {
+		c3 <- i
+	}
+
+	channels := FanIn(c1, c2, c3)
+
+	// todo - 고루틴을 사용하지 않으면 해당 문장에서 멈춰버림!!
+	go func() {
+		for num := range channels {
+			fmt.Print(num)
+		}
+	}()
+}
+```
+
+##### 분산처리 
+
+- 팬아웃 해서 파이프라인을 통과시키고 다시 팬인 시키면 분산 처리가 됩니다. 
+
+고루틴의 갯수가 많은 것은 크게 걱정할 필요가 없습니다. Go에서는 고루틴 마다 스레드를 모두 할당하지 않으며, 동시에 수행될 필요가 없는 고루틴들은 모두 하나의 스레드에서 순차적으로 수행되며 이것이 컴파일 시간이 
+예측가능한 경우가 많으므로 스레드를 이렇게 많이 만드는 경우 생길 수 있는 비용이 발생하지 않습니다. 
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func Distribute(p InitPipe, n int) InitPipe {
+	return func(ints <-chan int) <-chan int {
+		cs := make([]<-chan int, n)
+		for i := 0; i < n; i++ {
+			cs[i] = p(ints)
+		}
+		return FanIn(cs...)
+	}
+}
+
+func ExampleDistribute() {
+	fmt.Println("------------ Start ExampleDistribute ------------")
+	c := make(chan int)
+	go func() {
+		defer close(c)
+		c <- 5
+		c <- 3
+		c <- 8
+	}()
+
+	var wg sync.WaitGroup
+
+	out := Chain(PlusOne, Distribute(Chain(PlusOne, PlusOne, PlusOne), 10), PlusOne)(c)
+
+	wg.Add(1)
+
+	go func() {
+		for num := range out {
+			fmt.Println(num)
+		}
+
+		wg.Done()
+	}()
+
+	wg.Wait()
+
+	fmt.Println("------------ End ExampleDistribute ------------")
+}
+```
+

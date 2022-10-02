@@ -47,5 +47,4 @@ func ExampleFanIn() {
 			fmt.Print(num)
 		}
 	}()
-
 }
