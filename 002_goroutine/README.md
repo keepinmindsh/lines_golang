@@ -347,6 +347,115 @@ func main()  {
 }
 ```
 
+- 닫힌 채널 
 
+채널이 닫혀잇는 경우에는 ?
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	c := make(chan int, 10)
+
+	close(c)
+	
+	val, ok := <-c
+
+	if ok {
+		fmt.Println("Channel 이 열려있습니다. ")
+	}
+}
+```
+
+하나의 별수로 받거나 두 변수로 받거나 상관 없이 val 에는 기본 값이 들어옵니다, 기본 값을 0, 빈 문자열, nil, 모든 필드가 기본값으로 되어 있는 구조체 등이되며, ok에는 false 값으 넘어옵니다.   
+**닫은 채널은 또 닫으면 패닉이 발생합니다**
+
+### 동시성 패턴 
+
+##### 파이프라인 패턴
+
+파이프라인은 한 단계의 출력이 다음 단계의 입력으로 이어지는 구조 입니다. 
+컴퓨터 시스템에서는 특히 서로 다른 종류의 하드웨어들이 어떤 일을 해야할 때 파이프라인이 큰 효과가 있습니다. 소프트웨어에서는 들어오는 데이터와 나가는 데이터에 
+집중하여 문제를 풀고자 할 때 장점이 있고, 버퍼를 활용하면 경우에 따라 성능상의 장점도 얻을 수 있습니다. 
+
+- 기본적인 파이프라인 패턴 
+
+```go
+package main
+
+import "fmt"
+
+func PlusOne(in <-chan int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for num := range in {
+			out <- num + 1
+		}
+	}()
+	return out
+}
+
+func ExamplePlusOne() {
+	c := make(chan int)
+	go func() {
+		defer close(c)
+		c <- 5
+		c <- 3
+		c <- 8
+	}()
+
+	for num := range PlusOne(PlusOne(c)) {
+		fmt.Println(num)
+	}
+}
+```
+
+- chain으로 이어진 파이프라인을 구성해야할 경우 
+
+```go
+package main
+
+import "fmt"
+
+func PlusOne(in <-chan int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for num := range in {
+			out <- num + 1
+		}
+	}()
+	return out
+}
+
+type InitPipe func(<-chan int) <-chan int
+
+func Chain(ps ...InitPipe) InitPipe {
+	return func(in <-chan int) <-chan int {
+		c := in
+		for _, p := range ps {
+			c = p(c)
+		}
+		return c
+	}
+}
+
+func ExampleWithChain() {
+	c := make(chan int)
+	go func() {
+		defer close(c)
+		c <- 5
+		c <- 3
+		c <- 8
+	}()
+
+	for num := range Chain(PlusOne, PlusOne)(c) {
+		fmt.Println(num)
+	}
+}
+```
 
