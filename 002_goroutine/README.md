@@ -611,3 +611,102 @@ func ExampleDistribute() {
 }
 ```
 
+##### select 
+
+select 를 이용하면 동시에 여러 채널과 통신할 수 있습니다. select의 형태는 switch과 비슷하지만 아래의 특징이 있습니다.
+
+- 모든 case가 계싼된다. 거기에 함수 호출등이 있으면 select 수행할 때 모두 호출된다. 
+- 각 case는 채널에 입출력하는 현태가 되며 막히지 않고 입출력이 가능한 case가 있으면 그 중에 하나가 선택되어 입출력이 수행되고 해당 case의 코드만 수행된다. 
+- default가 있으면 모든 case에 입출력이 불가능할 때 코드가 수행된다.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  select {
+    case n := <-c1:
+        fmt.Println(n, "is from c1")
+    case n := <-c1:
+        fmt.Println(n, "is from c1")
+    case c3 <- f():
+        fmt.Println(n, "is from c1")
+    default :
+	    fmt.Println("No Channel is ready")
+  }
+}
+
+```
+
+###### select - 팬인하기 
+
+이 코드의 특징은 닫힌 채널을 nil 로 바꾸어주었다는 데 있습니다. nil 채널에는 보내기 및 받기가 모두 막히게 됩니다. 그렇기 때문에 채널이 닫혔다는 것이 
+발견되면 이것을 영원히 채널로 바꿔준 건입니다. 물론 채널 자체를 바꾼 것이 아니라 채널 별수를 nil 로 바꾼 것이기 때문에 혹시나 이 예제에는 보이지 않는 
+다른 고루틴이 닫힌 채널에서 자료를 받아가고 있었다고 해도 그쪽에는 아무런 영향을 주지 않습니다. 
+
+```go
+package main
+
+import "fmt"
+
+func FanInSelect(in1, in2, in3 <-chan int) <-chan int {
+
+	out := make(chan int)
+	openCnt := 3
+
+	closeChan := func(c *<-chan int) bool {
+		*c = nil
+		openCnt--
+		return openCnt == 0
+	}
+
+	go func() {
+		defer close(out)
+		for {
+			select {
+			case n, ok := <-in1:
+				if ok {
+					out <- n
+				} else if closeChan(&in1) {
+					return
+				}
+			case n, ok := <-in2:
+				if ok {
+					out <- n
+				} else if closeChan(&in2) {
+					return
+				}
+			case n, ok := <-in3:
+				if ok {
+					out <- n
+				} else if closeChan(&in3) {
+					return
+				}
+			}
+		}
+	}()
+	return out
+}
+
+func Example_SelectFanIn() {
+	c1, c2, c3 := make(chan int), make(chan int), make(chan int)
+	sendInts := func(c chan<- int, begin, end int) {
+		defer close(c)
+		for i := begin; i < end; i++ {
+			c <- i
+		}
+	}
+
+	go sendInts(c1, 11, 14)
+	go sendInts(c2, 21, 23)
+	go sendInts(c3, 31, 35)
+
+	for n := range FanInSelect(c1, c2, c3) {
+		fmt.Println(n, ",")
+	}
+}
+
+```
+
+

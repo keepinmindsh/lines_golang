@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
+
+	Example_SelectFanIn()
+
 	ExampleDistribute()
 
 	ExampleFanIn()
