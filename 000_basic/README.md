@@ -110,11 +110,11 @@ package main
 import "fmt"
 
 func main(){
-	var x string = "first"
-	var y string = "first"
+    var x string = "first"
+    var y string = "first"
   
     // 자바와 달리 값에 대한 비교가 == 로 가능하다. 
-	fmt.Println(x == y ) // output : true
+    fmt.Println(x == y ) // output : true
 }
 ```
 
@@ -123,7 +123,7 @@ package main
 
 import "fmt"
 
-func main(){
+func main(){ 
     // Type Inference : 타입 추론 방식으로 문자열에 대한 타입을 변수에 지정하지 않고도 들어온 변수의 타입에 따라 자동으로 지정한다. 
     // 이미 변수에 대한 타입이 지정된 경우에는 Type Inference를 사용할 수 없다. 
 	x := "Hello World"
@@ -221,32 +221,32 @@ package main
 import "fmt"
 
 func main(){
-  // x 변수에 float64의 5개의 배열을 생성할 때, 아래의 코드와 같다. 
-  var x [5]float64
-  x[4] = 100
-  fmt.Println(x)
-
-  var total float64 = 0
-
-  // x 변수의 길이 값을 가져 올 수 있다. 
-  for i := 0; i < len(x) ; i ++ {
-    total += x[i]
-  }
-
-  fmt.Println(total/float64(len(x)))
-
-  // 초기화 시점에 배열에 값을 할당하는 방식 
-  x = [5]float64{ 91,12,12,31}
-
-  fmt.Println(x)
+    // x 변수에 float64의 5개의 배열을 생성할 때, 아래의 코드와 같다. 
+    var x [5]float64
+    x[4] = 100
+    fmt.Println(x)
+    
+    var total float64 = 0
+    
+    // x 변수의 길이 값을 가져 올 수 있다. 
+    for i := 0; i < len(x) ; i ++ {
+        total += x[i]
+    }
+    
+    fmt.Println(total/float64(len(x)))
+    
+    // 초기화 시점에 배열에 값을 할당하는 방식 
+    x = [5]float64{ 91,12,12,31}
+    
+    fmt.Println(x)
     var total1 float64 = 0
     // x 변수의 배열에서 첫번째 값을 받지 않을 때, _ 를 사용하면 사용하지 않음을 의미 한다. 
     // 기본적으로 함수/변수에 대해서 선언되면 Go Lang은 사용해야 한다. 
     for _, value := range x {
-    total1 += value
-  }
-
-  fmt.Println(total1/float64(len(x)))
+        total1 += value
+    }
+    
+    fmt.Println(total1/float64(len(x)))
 }
 ```
 
@@ -256,44 +256,45 @@ package main
 import "fmt"
 
 func main() { 
-	// arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
+    // arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
     // new와는 달리 해당 타입이 포인터 값이 아닌 값 그 자체를 반환한다. 
-	arr := make([]float64, 5 )
-	
-	fmt.Println(arr)
-
+    arr := make([]float64, 5 )
+    
+    fmt.Println(arr)
+    
     // 배열의 갯수를 지정하지 않고 변수를 초기화 시점에 생성하는 방식 
-	arrList1 := []int{ 12,123,123}
-
+    arrList1 := []int{ 12,123,123}
+    
     arrList2 := make([]int, 1, 10 )
-
+    
     // arrList1 에 대해서 1부터 2사이의 값을 가져오는 데 기존의 배열에 영향을 미치지 않는다 ( 프로토 타입 )
-	arrList4 := arrList1[1:2]
-
+    arrList4 := arrList1[1:2]
+    
     // int 배열을 4개를 할당하는 것을 의미한다. 
-	arrList3 := make([]int, 4 )
-
+    arrList3 := make([]int, 4)
+    
     // 기존의 배열 객체에서 배열을 가져와서 신규 배열 객체에 추가하는 방식으로 기존의 배열에는 해당 값이 추가되지 않는다. 
-	arrList5 := append(arrList1, 23, 234, 234)
-
-	fmt.Println(arr)
- 	fmt.Println(arrList1)
-	fmt.Println(arrList2)
-	fmt.Println(arrList3)
-	fmt.Println(arrList4)
-    fmt.Println(arrList5)
+    arrList5 := append(arrList1, 23, 234, 234)
+    
+    fmt.Println(arr)
     fmt.Println(arrList1)
-  
+    fmt.Println(arrList2)
+    fmt.Println(arrList3)
+    fmt.Println(arrList4)
+    fmt.Println(arrList5)
+	
+    fmt.Println(arrList1)
+    
     // 추가 예제 
     // Slice 
     // make(type, length[, capacity])
     s1 := make([]int, 10)
     s2 := make([]int, 10, 100) 
-
+    
     // Map
     // make(type)
     m := make(map[string]string)
-
+    
     // Chan
     // make(chan type[, capacity])
     // Unbuffered
@@ -309,14 +310,14 @@ package main
 import "fmt"
 
 func main(){
-  // map 내부에 string이 키인 map을 받을 수 있는 변수를 생성 및 할당
-  elements := make(map[string]map[string]string)
-  
-	elements["H"] = map[string]string{ "OK": "Hydrogen", "haha" : "sdjasf"}
-
-	name := elements["H"]
-
-	fmt.Println(name["OK"], name["haha"])
+    // map 내부에 string이 키인 map을 받을 수 있는 변수를 생성 및 할당
+    elements := make(map[string]map[string]string)
+    
+    elements["H"] = map[string]string{ "OK": "Hydrogen", "haha" : "sdjasf"}
+    
+    name := elements["H"]
+    
+    fmt.Println(name["OK"], name["haha"])
 }
 ```
 
