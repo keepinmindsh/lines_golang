@@ -1,8 +1,6 @@
-
 # 주석 및 Main
 
 ```go
-
 package main
 
 import "fmt"
@@ -10,15 +8,13 @@ import "fmt"
 // 이것이 주석이다. 
 // 각 Line의 마지막에 ; 를 붙일 필요가 없다. 
 func main(){
-  fmt.Println("Helo World")	
-}    
-
+  fmt.Println("Hello World")	
+}
 ```
 
 # 문자열 및 논리 연산자 / 연산자
 
 ```go 
-
 package main
 
 import "fmt"
@@ -27,9 +23,10 @@ func main(){
     fmt.Println(len("Hello World"))
     fmt.Println("Hello World"[1])
     fmt.Println("Hello " + "World")
-}      
+}  
+```   
 
-
+```go
 package main
 
 import "fmt"
@@ -41,7 +38,9 @@ func main(){
    fmt.Println(true || false)
    fmt.Println(!true)
 }
+```
 
+```go
 package main
 
 import "fmt"
@@ -52,6 +51,9 @@ func main(){
    fmt.Println("1 + 1 =", 1.0 + 1.)
 }
 
+```
+
+```go
 package main
  
 import "fmt"
@@ -70,27 +72,25 @@ func main() {
     9
     10
         `  )
-}
-       
+} 
 ```
 
 # 변수 선언 방식 / 할당 방식 / ==
 
 ```go
-
 package main
 
 import "fmt"
 
-// 사용하지 않는 변수가 선언되 었을 경우 go run 시점에 go가 실행되지 않는다. 
-
+// 사용하지 않는 변수가 선언되 었을 경우 go run 시점에 go가 실행되지 않는다.
 func main(){
   // 변수에 대한 타입 선업은 var {변수명} {타입} 으로 정의된다. 
   var x string
       x = "Hello World"
   fmt.Println(x)
 }   
-
+```
+```go
 package main
 
 import "fmt"
@@ -102,39 +102,45 @@ func main(){
         x = "second"
 	fmt.Println(x)
 }
+```
 
+```go
 package main
 
 import "fmt"
 
 func main(){
 	var x string = "first"
-  var y string = "first"
+	var y string = "first"
   
-  // 자바와 달리 값에 대한 비교가 == 로 가능하다. 
+    // 자바와 달리 값에 대한 비교가 == 로 가능하다. 
 	fmt.Println(x == y ) // output : true
 }
+```
 
+```go
 package main
 
 import "fmt"
 
 func main(){
-
-  // Type Inference : 타입 추론 방식으로 문자열에 대한 타입을 변수에 지정하지 않고도 들어온 변수의 타입에 따라 자동으로 지정한다. 
-  // 이미 변수에 대한 타입이 지정된 경우에는 Type Inference를 사용할 수 없다. 
-  x := "Hello World"
+    // Type Inference : 타입 추론 방식으로 문자열에 대한 타입을 변수에 지정하지 않고도 들어온 변수의 타입에 따라 자동으로 지정한다. 
+    // 이미 변수에 대한 타입이 지정된 경우에는 Type Inference를 사용할 수 없다. 
+	x := "Hello World"
 
 	x = "Hello"	
 	
 	fmt.Println(x)
 }
+```
 
+```go 
 package main
 
 import "fmt"
 
 //var x string = "Hello World"
+
 func main(){
   // 변수에 대해서 다중으로 선언하여 아래와 같이 사용이 가능하다. 
   // var {변수명} - 타입 추론이 일어난다. 
@@ -146,13 +152,11 @@ func main(){
   
   fmt.Println(a, b, c)
 }
-
 ```
 
 # 입력 ( Scanf )
 
 ```go 
-
 package main
 
 import "fmt"
@@ -169,11 +173,9 @@ func main(){
   output := input * 2
   fmt.Println(output)
 }
-
 ```
 
 # 흐름제어
-
 ```go 
 
 package main
@@ -214,7 +216,6 @@ func main() {
 # 배열/슬라이스/맵
 
 ```go 
-
 package main
 
 import "fmt"
@@ -254,24 +255,24 @@ import "fmt"
 
 func main() {
   
-  // arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
-  // new와는 달리 해당 타입이 포인터 값이 아닌 값 그 자체를 반환한다. 
+    // arr 변수에 float 배열로 5개의 공간을 구성하는 배열을 반환한다. make : 특정 타입의 메모리를 변수에 할당하는 역할 
+    // new와는 달리 해당 타입이 포인터 값이 아닌 값 그 자체를 반환한다. 
 	arr := make([]float64, 5 )
 	
 	fmt.Println(arr)
 
-  // 배열의 갯수를 지정하지 않고 변수를 초기화 시점에 생성하는 방식 
+    // 배열의 갯수를 지정하지 않고 변수를 초기화 시점에 생성하는 방식 
 	arrList1 := []int{ 12,123,123}
 
-  arrList2 := make([]int, 1, 10 )
+    arrList2 := make([]int, 1, 10 )
 
-  // arrList1 에 대해서 1부터 2사이의 값을 가져오는 데 기존의 배열에 영향을 미치지 않는다 ( 프로토 타입 )
+    // arrList1 에 대해서 1부터 2사이의 값을 가져오는 데 기존의 배열에 영향을 미치지 않는다 ( 프로토 타입 )
 	arrList4 := arrList1[1:2]
 
-  // int 배열을 4개를 할당하는 것을 의미한다. 
+    // int 배열을 4개를 할당하는 것을 의미한다. 
 	arrList3 := make([]int, 4 )
 
-  // 기존의 배열 객체에서 배열을 가져와서 신규 배열 객체에 추가하는 방식으로 기존의 배열에는 해당 값이 추가되지 않는다. 
+    // 기존의 배열 객체에서 배열을 가져와서 신규 배열 객체에 추가하는 방식으로 기존의 배열에는 해당 값이 추가되지 않는다. 
 	arrList5 := append(arrList1, 23, 234, 234)
 
 	fmt.Println(arr)
@@ -279,25 +280,25 @@ func main() {
 	fmt.Println(arrList2)
 	fmt.Println(arrList3)
 	fmt.Println(arrList4)
-	fmt.Println(arrList5)
-  fmt.Println(arrList1)
+    fmt.Println(arrList5)
+    fmt.Println(arrList1)
   
-  // 추가 예제 
-  // Slice 
-  // make(type, length[, capacity])
-  s1 := make([]int, 10)
-  s2 := make([]int, 10, 100) 
+    // 추가 예제 
+    // Slice 
+    // make(type, length[, capacity])
+    s1 := make([]int, 10)
+    s2 := make([]int, 10, 100) 
 
-  // Map
-  // make(type)
-  m := make(map[string]string)
+    // Map
+    // make(type)
+    m := make(map[string]string)
 
-  // Chan
-  // make(chan type[, capacity])
-  // Unbuffered
-  c1 := make(chan int)
-  // Buffered
-  c2 := make(chan int, 10)
+    // Chan
+    // make(chan type[, capacity])
+    // Unbuffered
+    c1 := make(chan int)
+    // Buffered
+    c2 := make(chan int, 10)
 }
 
 package main
