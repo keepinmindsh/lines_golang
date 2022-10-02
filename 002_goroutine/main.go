@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	FanoutMain()
+
 	ExampleFibonacci()
 
 	Example_simpleChannel()
