@@ -709,4 +709,50 @@ func Example_SelectFanIn() {
 
 ```
 
+###### select - 채널을 기다리지 않고 받기
 
+채널에 값이 있으면 받고 없으면 그냥 스킵하는 흐름을 구성하려면 
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  select {
+  case n := <-c:
+    fmt.Println(n)
+  default:
+    fmt.Println("Data is not ready. Skipping...")
+  }
+}
+```
+
+###### select - 시간 제한 
+
+채널과 통신을 기다리되 일정 시간 동안만 기다리겠다면 time.After 함수를 이용할 수 있습니다.  
+아래와 같은 코드가 작성되면 recv 와 send에 빈번하게 자료가 반복적으로 오고 가더라도 5초 동안만 처리하게 됩니다. 
+
+```go
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+func Main_TimeLimit(recv <-chan int, send chan<- int ) {
+  timeout := time.After(5 * time.Second)
+  for {
+    select {
+    case n := <-recv:
+        fmt.Println(n)
+    case send <- 1:
+		fmt.Println("sent 1")
+    case  <- timeout:
+        fmt.Println("communication wasn't finished in 5 sec")
+		return
+    }
+  }
+}
+```
