@@ -10,8 +10,16 @@
 
 ### Functions & Class & Interface 
 
-- [Functions & Class & Interface ](https://github.com/keepinmindsh/lines_golang/tree/main/003_functionsclassinterface)
+- [Functions & Class & Interface](https://github.com/keepinmindsh/lines_golang/tree/main/003_functionsclassinterface)
 
 ### Goroutine
 
 - [Goroutine](https://github.com/keepinmindsh/lines_golang/tree/main/002_goroutine)
+
+### Golang Tips 
+
+- [Golang Tips](https://github.com/keepinmindsh/lines_golang/tree/main/999_golang_tips)
+
+### Golang Reference Links 
+
+- [References Link](https://github.com/keepinmindsh/lines_golang/tree/main/998_references)
