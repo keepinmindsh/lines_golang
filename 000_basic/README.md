@@ -453,13 +453,13 @@ package main
 import "fmt"
 
 func main() {
-  x := 5
-  zero(&x)
-  fmt.Println(x)
+    x := 5
+    zero(&x)
+    fmt.Println(x)
 }
 
 func zero(xPtr *int) {
-  *xPtr = 0
+    *xPtr = 0
 } 
 ```
 
@@ -488,32 +488,32 @@ import "fmt"
 
 func main() {
 
-  // 구조체 선언 
-  type Circle struct {
-    x float64
-    y float64
-    r float64
-  }
-
-  // 구조체를 활용하는 방식 
-  c := Circle{x: 0, y: 100, r: 20}
-
-  fmt.Println(c.x, c.y, c.r)
-
-  fmt.Println(c)
-
-  fmt.Println(circleArea(c))
-
-  fmt.Println(c.area())
+    // 구조체 선언 
+    type Circle struct {
+        x float64
+        y float64
+        r float64
+    }
+    
+    // 구조체를 활용하는 방식 
+    c := Circle{x: 0, y: 100, r: 20}
+    
+    fmt.Println(c.x, c.y, c.r)
+    
+    fmt.Println(c)
+    
+    fmt.Println(circleArea(c))
+    
+    fmt.Println(c.area())
 }
 
 // 함수 구조체에 대해서 메소드 포인터를 이용해서 c.area()에서 구조체의 변수를 사용한다. 
 func (c *Circle) area() float64 {
-  return c.r * c.r
+    return c.r * c.r
 }
 
 func circleArea(c Circle) float64 {
-  return c.r * c.r
+    return c.r * c.r
 }                             
 ```
 
@@ -525,18 +525,18 @@ package main
 import "fmt"
 
 func main() {
-  // 메인 스레에서 가벼운 스레드를 생성하여 비동기로 프로세스를 실행할 수 있다.
-  go f(0)
-  go f(10) 
-
-  var input string
-  fmt.Scanf("%d", &input)
+    // 메인 스레에서 가벼운 스레드를 생성하여 비동기로 프로세스를 실행할 수 있다.
+    go f(0)
+    go f(10) 
+    
+    var input string
+    fmt.Scanf("%d", &input)
 }
 
 func f(n int) {
-  for i := 0; i < 10; i++ {
-    fmt.Println(n, ":", i)
-  }
+    for i := 0; i < 10; i++ {
+        fmt.Println(n, ":", i)
+    }
 }    
 ```
 
@@ -551,42 +551,42 @@ import (
 )
 
 func pinger(c chan string) {
-  for i := 0; ; i++ {
-    // 채널의 값을 넣는다.
-    c <- "ping"
-    time.Sleep(time.Second * 5)
-  }
+    for i := 0; ; i++ {
+        // 채널의 값을 넣는다.
+        c <- "ping"
+        time.Sleep(time.Second * 5)
+    }
 }
 
 func printer(c chan string) {
-  for {
-    // 채널에 가져와서 출력한다. 
-    msg := <-c
-    fmt.Println(msg)
-    time.Sleep(time.Second * 1)
-  }
+    for {
+        // 채널에 가져와서 출력한다. 
+        msg := <-c
+        fmt.Println(msg)
+        time.Sleep(time.Second * 1)
+    }
 }
 
 func ponger(c chan string) {
-  for i := 0; ; i++ {
-    // 채널의 값을 넣는다. 
-    c <- "pong"
-    time.Sleep(time.Second * 2)
-  }
+    for i := 0; ; i++ {
+        // 채널의 값을 넣는다. 
+        c <- "pong"
+        time.Sleep(time.Second * 2)
+    }
 }
 
 func main() {
-  // make에 의해 채널 을 할당하여 c에 넣는다. 
-  var c chan string = make(chan string)
-
-  // 채널에 의해서 값을 채널에 할당하고, 대기 중에 그 값을 채널에서 가져와서 출력한다. 
-  // go routine에 의해서 각각의 스레드에서 channel을 공유하여 값을 출련하다. 
-  go pinger(c)
-  go ponger(c)
-  go printer(c)
-
-  var input string
-  fmt.Scanln(&input)
+    // make에 의해 채널 을 할당하여 c에 넣는다. 
+    var c chan string = make(chan string)
+    
+    // 채널에 의해서 값을 채널에 할당하고, 대기 중에 그 값을 채널에서 가져와서 출력한다. 
+    // go routine에 의해서 각각의 스레드에서 channel을 공유하여 값을 출련하다. 
+    go pinger(c)
+    go ponger(c)
+    go printer(c)
+    
+    var input string
+    fmt.Scanln(&input)
 }
 ```
 
@@ -599,10 +599,10 @@ import (
 )
 
 /*
-이 프로그램은 "from 1"을 2초마다 출력하고 "from 2"를 3초마다 출력한다. 
-select는 준비된 첫 번째 채널을 골라 해당 채널로부터 메시지를 받는다(또는 해당 채널로 메시지를 보낸다). 
-하나 이상의 채널이 준비되면 어느 채널로부터 메시지를 받을지 무작위로 선택한다. 
-준비된 채널이 없으면 사용 가능해질 때까지 문장 실행이 차단된다.
+    이 프로그램은 "from 1"을 2초마다 출력하고 "from 2"를 3초마다 출력한다. 
+    select는 준비된 첫 번째 채널을 골라 해당 채널로부터 메시지를 받는다(또는 해당 채널로 메시지를 보낸다). 
+    하나 이상의 채널이 준비되면 어느 채널로부터 메시지를 받을지 무작위로 선택한다. 
+    준비된 채널이 없으면 사용 가능해질 때까지 문장 실행이 차단된다.
 */
 func main() {
 	c1 := make(chan string)
@@ -634,6 +634,5 @@ func main() {
 
 	var input string
 	fmt.Scanln(&input)
-}
 }
 ```
