@@ -21,6 +21,8 @@ import "fmt"
 
 func main(){
     fmt.Println(len("Hello World"))
+    
+    // 알파벳을 10진수로 표현함. 
     fmt.Println("Hello World"[1])
     fmt.Println("Hello " + "World")
 }  
