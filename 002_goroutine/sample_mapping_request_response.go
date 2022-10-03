@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"sync"
+	"time"
 )
 
 type Request struct {
@@ -16,17 +18,19 @@ type Response struct {
 }
 
 func PlusOneService(reqs <-chan Request, workerId int) {
+	fmt.Println("PlusOneService Start : " + time.Now().Format("YYYY MM DD HH24:MI:SS"))
 	for req := range reqs {
 		go func(req Request) {
 			defer close(req.Resp)
 			req.Resp <- Response{req.Num + 1, workerId}
+			fmt.Println("PlusOneService Start - go func : " + time.Now().Format("YYYY MM DD HH24:MI:SS") + " Value : " + strconv.Itoa(req.Num))
 		}(req)
 	}
 }
 
 func MappingRequestAndResponse() {
 	fmt.Println("Start -------------- MappingRequestAndResponse --------------")
-	
+
 	reqs := make(chan Request)
 	defer close(reqs)
 	for i := 0; i < 3; i++ {
