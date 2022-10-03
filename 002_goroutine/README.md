@@ -757,3 +757,72 @@ func Main_TimeLimit(recv <-chan int, send chan<- int ) {
   }
 }
 ```
+
+#### 파이프라인 중단하기
+
+이전에는 파이프라인을 구성할 때, 받기만 할 뿐 그만 보내달라고 요청할 수 없었습니다.  
+모두 자료를 소진시키지 않으면 해제되지 않는 고루틴들이 메모리에 남아 있으면 메모리 누수가 발생합니다. 
+모든 자료를 소진시킨다고 해도 좋지 않는 경구가 많은데 보내는 고루틴이 많은 네트워크 트래릭을 유발시키거나 배터리를 소모한다면 
+계속해서 데이터를 받아오면 그만큼 더 많은 네트워크 트래픽과 배터리 소모가 발생할 것이기 때문입니다.   
+
+- 이럴 때 유용한 패턴 중 하나는 done 채널을 하나 더 두는 것입니다. 보내는 고루틴에서 이 채널로부터 신호가 감지되면 보내는 것을 중단하고 채널을 닫으면 됩니다. 신호는 close(done)으로 주면 됩니다. 
+
+```go
+package main
+
+import (
+  "fmt"
+  "runtime"
+  "time"
+)
+
+func PlusOneWithChannel(done <-chan struct{}, in <-chan int) <-chan int {
+  out := make(chan int) // 양방향으로 채널이 사용될 수 있음
+  go func() {
+    defer close(out)
+    for num := range in {
+      select {
+      case out <- num + 1:
+      case <-done:
+        return
+      }
+    }
+  }()
+  return out
+}
+
+func ReturnStopPipelineWithChannel() {
+  c := make(chan int)
+  go func() {
+    defer close(c)
+    for i := 3; i < 103; i += 10 {
+      c <- i
+    }
+  }()
+
+  done := make(chan struct{})
+  nums := PlusOneWithChannel(done, PlusOneWithChannel(done, PlusOneWithChannel(done, PlusOneWithChannel(done, PlusOneWithChannel(done, c)))))
+
+  for num := range nums {
+    fmt.Println(num)
+    if num == 18 {
+      break
+    }
+  }
+
+  close(done)
+  time.Sleep(100 * time.Millisecond)
+
+  fmt.Println("NumGoroutine: ", runtime.NumGoroutine())
+  for _ = range nums {
+    // Consume All nums
+  }
+  time.Sleep(100 * time.Millisecond)
+  fmt.Println("NumGoroutine: ", runtime.NumGoroutine())
+}
+```
+
+PlusOneWithChannel의 반복문에서 select를 이용하여 done 채널도 함께 관착하는 것을 알 수 있습니다. select에서 닫힌 채널로부터 
+부한정 기본값(빈 값)을 받아오는 것이 다소 불편해보였는데, 여기서는 좋은 특성이 됩니다. 만약에 이런 특성이 없엇다면 done 채널에 값에 기다르는 회수에 
+맞게 done 채널에 값을 보내줘야하는 데 이것은 쉬운일이 아닙니다. close(done) 한 번으로 이 채널로부터 값을 기다리고 있는 모든 로그틴에 일이 끝났다고 
+방송을 하는 것입니다. 
