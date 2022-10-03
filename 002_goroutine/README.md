@@ -830,4 +830,72 @@ PlusOneWithChannel의 반복문에서 select를 이용하여 done 채널도 함�
 #### 컨텍스트(context.Context) 활용하기 
 
 done 채널을 따로 운영해도 좋습니다만 이뿐만 아니라 더 복잡한 상황이 발생하기 때문에 context* 패턴을 이용하면 좋습니다. 복잡한 상황이란 여러 고루틴에 
-종료 신호 이외에도 다른 공유되어야 하는 정보가 있다는 것입니다. 대표적으로 사용자 인증 정보나 요청 마감등이 있습니다. 
+종료 신호 이외에도 다른 공유되어야 하는 정보가 있다는 것입니다. 대표적으로 사용자 인증 정보나 요청 마감등이 있습니다.   
+
+context.Context는 계층 구조로 되어 있습니다. context.Background()가 가장 상위에 있습니다. 이것은 프로그램이 끝날 때 까지 절대로 취소되지 않고 
+계속 살아 있습니다. 여기에 하위 구조를 계속해서 트리 구조로 붙일 수 있는데 상위 구조가 취소되면 그 하위에 있는 모든 컨텍스트도 취소됩니다.   
+
+context.WithCancel로 취상위 컨텍스트인 context.Background() 밑에 취소 기능을 갖춘 컨텍스트를 붙였습니다. ctx와 cancel 두 변수로 받았는데 ctx
+에는 새로 생성된 컨텍스트가 들어가고, cancel 은 이 컨텍스트를 취소하는데 호출할 수 있는 함수가 들어 갑니다.  
+
+---
+
+WithDeadline, WithTimeout 을 이용하여 만든 ctx를 이용하여 호출하면 시간이 지나면 취소되게 만들 수 있습니다. 이것을 활용하지 않고 구현한다면 상당히 번거
+롭습니다. WithValue를 이용하면 인증 토큰 같이 요청 범위 내에 있는 값들을 보낼 수 있어서 편리합니다. 
+
+> [golang - context](http://godoc.org/golang.org/x/net/context)
+
+#### 요청과 응답 짝짓기 
+
+요청을 한 채널에 보내고 응답을 다른 채널로 받는 방식으로 파이프라인을 동작시킬 수 있을 것입니다. PlusOne의 경우에는 넘겨준 채널에 1을 넣으면 반환받는 채널에서 2를
+받을 수 있으니까요. 그런데 고민이 될 수 있는 점이 있습니다. 응답을 받았을 때 이것이 어느 요처엥 의한 응답인지 알아야 하는 경우가 있습니다. 특히 분산 처리되면 어느것이
+먼저 나올지 알 수 없데 되니까요. 알 필요가 없는 경우도 많지만 알아야 하는 경우도 있습니다.
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+type Request struct {
+	Num  int
+	Resp chan Response
+}
+
+type Response struct {
+	Num      int
+	WorkerID int
+}
+
+func PlusOneService(reqs <-chan Request, workerId int) {
+	for req := range reqs {
+		go func(req Request) {
+			defer close(req.Resp)
+			req.Resp <- Response{req.Num + 1, workerId}
+		}(req)
+	}
+}
+
+func MappingRequestAndResponse() {
+	fmt.Println("Start -------------- MappingRequestAndResponse --------------")
+	
+	reqs := make(chan Request)
+	defer close(reqs)
+	for i := 0; i < 3; i++ {
+		go PlusOneService(reqs, i)
+	}
+	var wg sync.WaitGroup
+	for i := 3; i < 53; i += 10 {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			resps := make(chan Response)
+			reqs <- Request{i, resps}
+			fmt.Println(i, "=>", <-resps)
+		}(i)
+	}
+	wg.Wait()
+}
+```

@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	MappingRequestAndResponse()
+
 	ContextSample()
 
 	Example_SelectFanIn()
