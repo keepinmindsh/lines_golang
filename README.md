@@ -12,6 +12,10 @@
 
 - [Functions & Class & Interface](https://github.com/keepinmindsh/lines_golang/tree/main/003_functionsclassinterface)
 
+### Stack 
+
+- [Stack with Slice](https://github.com/keepinmindsh/lines_golang/tree/main/004_stack)
+
 ### Goroutine
 
 - [Goroutine](https://github.com/keepinmindsh/lines_golang/tree/main/002_goroutine)
