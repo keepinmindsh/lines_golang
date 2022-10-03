@@ -28,9 +28,10 @@ func PlusOneService(reqs <-chan Request, workerId int) {
 	}
 }
 
-// todo 이 코드는 정말 이해가 되지 않습니다 chan은 정의되는 순간부터 동일한 주소로 인식될까요?
-// 재생각엔 request가 수신 채널로 받아졌을 때, 해당 이벤트의 트리거로 송신 채널 req가 열렸다고 보는게 제일 맞음요.
 func MappingRequestAndResponse() {
+	// todo 이 코드는 정말 이해가 되지 않습니다 chan은 정의되는 순간부터 동일한 주소로 인식될까요?
+	// 재생각엔 request 가 수신 채널로 받아졌을 때, 해당 이벤트의 트리거로 송신 채널 request 가 열렸다고 보는게 제일 맞음요.
+
 	fmt.Println("Start -------------- MappingRequestAndResponse --------------")
 
 	reqs := make(chan Request)

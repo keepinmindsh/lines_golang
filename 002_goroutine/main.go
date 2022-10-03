@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	PrintPrimes(100)
+
 	MappingRequestAndResponse()
 
 	ContextSample()
