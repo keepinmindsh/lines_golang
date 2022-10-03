@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+	ContextSample()
+
 	Example_SelectFanIn()
 
 	ExampleDistribute()

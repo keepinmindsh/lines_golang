@@ -42,6 +42,9 @@ func FanInSelect(in1, in2, in3 <-chan int) <-chan int {
 }
 
 func Example_SelectFanIn() {
+
+	fmt.Println("Start --------------- Example_SelectFanIn ---------------")
+
 	c1, c2, c3 := make(chan int), make(chan int), make(chan int)
 	sendInts := func(c chan<- int, begin, end int) {
 		defer close(c)
