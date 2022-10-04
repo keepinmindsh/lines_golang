@@ -50,3 +50,38 @@ func main() {
 	fmt.Printf("value : %s %s", value, ok)
 }
 ```
+
+## Map 사용하기 
+
+슬라이스와 다른 점은 맵을 이용할 때에는 맵 변수 자체에 다시 할당하지 않으므로 포인터를 취하지 않아도 맵을 변경할 수 있습니다. 
+
+```go
+package main
+
+func Count(s string, codeCount map[rune]int) {
+	for _, r := range s {
+		codeCount[r]++
+	}
+}
+
+```
+
+물론 맵을 다른 맵으로 바꿔치기 하고 싶으면 포인터를 넘겨야 합니다만 그런 경우는 흔치 않습니다. 반면에 슬라이스는 추가할 때 a = append(a, ...) 와 같은 형식이 사용되므로 포인터를 넘겨야 추가할 수 있습니다.
+
+```go
+package main
+
+import "fmt"
+
+func ExampleCount() {
+	codeCount := map[rune]int{}
+	Count("가나다나", codeCount)
+	var keys sort.IntSlice
+	for key := range codeCount {
+		keys = append(keys, int(key))
+	}
+	for _, key := range keys {
+		fmt.Println(string(key), codeCount[rune(key)])
+	}
+}
+```
