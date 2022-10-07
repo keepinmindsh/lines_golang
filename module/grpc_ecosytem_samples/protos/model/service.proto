@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "protos/model";
+
+message StringMessage {
+  string value = 1;
+}
+
+service YourService {
+  rpc Echo(StringMessage) returns (StringMessage) {}
+}
