@@ -55,3 +55,29 @@
 ### Style Guide
 
 > [Golang Style Guide](https://github.com/TangoEnSkai/uber-go-style-guide-kr)  
+
+
+### Goland more 
+
+- Golang
+    - Discovery In Go
+    - Effective Go
+    - https://github.com/grpc-ecosystem
+        - https://grpc.io/docs/languages/go/basics/
+            - https://github.com/grpc/grpc-go/blob/master/examples/route_guide/server/server.go
+    - https://github.com/golang-standards/project-layout
+    - goorm
+    - Golang with Swagger
+    - Google Pubsub with GO
+    - Golang with Test Code
+    - GOPRIVATE 와 GOPROXY 설정 이유
+    - go env 사용하기 - https://velog.io/@j1mmyson/Golang-.env%EB%A1%9C-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+    - https://go.dev/doc/gopath_code
+    - golang - socket
+    - golang with fcm
+    - https://jeonghwan-kim.github.io/dev/2019/01/14/go-time.html
+    - golang with socket
+        - https://github.com/yosuke-furukawa/socket.io-go-emitter
+    - Sync.Mutex
+    - RxGo
+- Protocol Buffer with golang 
