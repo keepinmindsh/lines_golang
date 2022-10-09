@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// package 명은 go package 에 지정된 경로의 제일 마지막 것으로 해야 한다.
+package proto.model;
+option go_package = "./proto/model";
+// 위 경로는 실제 배포시 적용될 것으로 해준다.
+
+message MyData {
+    string msg = 1;
+    int32 number = 2;
+}

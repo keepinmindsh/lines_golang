@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+// package 명은 go package 에 지정된 경로의 제일 마지막 것으로 해야 한다.
+package proto.model;
+option go_package = "./proto/model";
+// 위 경로는 실제 배포시 적용될 것으로 해준다.
+
+enum Corpus {
+    CORPUS_UNSPECIFIED = 0;
+    CORPUS_UNIVERSAL = 1;
+    CORPUS_WEB = 2;
+    CORPUS_IMAGES = 3;
+    CORPUS_LOCAL = 4;
+    CORPUS_NEWS = 5;
+    CORPUS_PRODUCTS = 6;
+    CORPUS_VIDEO = 7;
+}
+
+enum EnumAllowingAlias {
+    option allow_alias = true;
+    EAA_UNSPECIFIED = 0;
+    EAA_STARTED = 1;
+    EAA_RUNNING = 1;
+    EAA_FINISHED = 2;
+}
+enum EnumNotAllowingAlias {
+    ENAA_UNSPECIFIED = 0;
+    ENAA_STARTED = 1;
+    // ENAA_RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+    ENAA_FINISHED = 2;
+}
+
+message SearchRequest {
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+}
