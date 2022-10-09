@@ -1,4 +1,4 @@
-module sample_grpc_client
+module sample_grpc_server
 
 go 1.19
 

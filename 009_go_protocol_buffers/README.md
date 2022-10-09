@@ -91,6 +91,4 @@ message SearchRequest {
 
 
 > [Protocol Buffers](https://developers.google.com/protocol-buffers/docs/proto3)      
-> [Go Generated Code](https://developers.google.com/protocol-buffers/docs/reference/go-generated)     
-> [Go GRPC Plugin Guide](https://github.com/grpc/grpc-go/tree/master/examples)      
-> [Go GRPC GetStarted Guide](https://grpc.io/docs/languages/go/quickstart/)   
+> [Go Generated Code](https://developers.google.com/protocol-buffers/docs/reference/go-generated)
