@@ -16,9 +16,29 @@
 
 - [Stack with Slice](https://github.com/keepinmindsh/lines_golang/tree/main/004_stack)
 
+### Map 
+
+- [Map](https://github.com/keepinmindsh/lines_golang/tree/main/005_map)
+
+### DataType 
+
+- [Data Type](https://github.com/keepinmindsh/lines_golang/tree/main/006_datatype)
+
+### Set 
+
+- [Set](https://github.com/keepinmindsh/lines_golang/tree/main/007_set)
+
+### IO 
+
+- [IO](https://github.com/keepinmindsh/lines_golang/tree/main/008_IO)
+
 ### Goroutine
 
 - [Goroutine](https://github.com/keepinmindsh/lines_golang/tree/main/002_goroutine)
+
+### Go - DesignPattern 
+
+- [DesignPattern](https://github.com/keepinmindsh/lines_golang/tree/main/997_designpattern)
 
 ### Golang Tips 
 
