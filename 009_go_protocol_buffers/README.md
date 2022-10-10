@@ -7,11 +7,7 @@ C언어로 예를 들어 구조체를 정의하고, 이를 소켓을 통해 전�
 변환된 데이터를 받은 후 Deserialize(파싱해서 다시 구조체의 형태로 저장) 하던 과정이 있다면, 이를 직접 코드로 다 작성해야 한다.  
 하지만 ProtoBuf는 데이터 구조만 정의하면 이 과정은 전부 지원해준다.
 
-## ProtoBuf에 대한 컴파일 명령어 
-
-```shell
-$  protoc --go_out=./ --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/model/data.proto
-```
+## ProtoBuf에 대한 컴파일 명령어
 
 - 하나만 지정해서 proto 파일 빌드하기 
 

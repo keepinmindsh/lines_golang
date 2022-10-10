@@ -1,5 +1,11 @@
 # GRPC 
 
+## GRPC 컴파일 하기 
+
+```shell
+$  protoc --go_out=./ --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/model/data.proto
+```
+
 ## Server 
 
 ```go
