@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.21.7
-// source: data.proto
+// source: proto/model/data.proto
 
 // package 명은 go package 에 지정된 경로의 제일 마지막 것으로 해야 한다.
 
@@ -34,7 +34,7 @@ type MyData struct {
 func (x *MyData) Reset() {
 	*x = MyData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_data_proto_msgTypes[0]
+		mi := &file_proto_model_data_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -47,7 +47,7 @@ func (x *MyData) String() string {
 func (*MyData) ProtoMessage() {}
 
 func (x *MyData) ProtoReflect() protoreflect.Message {
-	mi := &file_data_proto_msgTypes[0]
+	mi := &file_proto_model_data_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *MyData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MyData.ProtoReflect.Descriptor instead.
 func (*MyData) Descriptor() ([]byte, []int) {
-	return file_data_proto_rawDescGZIP(), []int{0}
+	return file_proto_model_data_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *MyData) GetMsg() string {
@@ -77,35 +77,36 @@ func (x *MyData) GetNumber() int32 {
 	return 0
 }
 
-var File_data_proto protoreflect.FileDescriptor
+var File_proto_model_data_proto protoreflect.FileDescriptor
 
-var file_data_proto_rawDesc = []byte{
-	0x0a, 0x0a, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x22, 0x32, 0x0a, 0x06, 0x4d, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x42, 0x0f, 0x5a,
-	0x0d, 0x2e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_proto_model_data_proto_rawDesc = []byte{
+	0x0a, 0x16, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x22, 0x32, 0x0a, 0x06, 0x4d, 0x79, 0x44, 0x61, 0x74, 0x61, 0x12,
+	0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73,
+	0x67, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
-	file_data_proto_rawDescOnce sync.Once
-	file_data_proto_rawDescData = file_data_proto_rawDesc
+	file_proto_model_data_proto_rawDescOnce sync.Once
+	file_proto_model_data_proto_rawDescData = file_proto_model_data_proto_rawDesc
 )
 
-func file_data_proto_rawDescGZIP() []byte {
-	file_data_proto_rawDescOnce.Do(func() {
-		file_data_proto_rawDescData = protoimpl.X.CompressGZIP(file_data_proto_rawDescData)
+func file_proto_model_data_proto_rawDescGZIP() []byte {
+	file_proto_model_data_proto_rawDescOnce.Do(func() {
+		file_proto_model_data_proto_rawDescData = protoimpl.X.CompressGZIP(file_proto_model_data_proto_rawDescData)
 	})
-	return file_data_proto_rawDescData
+	return file_proto_model_data_proto_rawDescData
 }
 
-var file_data_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_data_proto_goTypes = []interface{}{
+var file_proto_model_data_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_proto_model_data_proto_goTypes = []interface{}{
 	(*MyData)(nil), // 0: proto.model.MyData
 }
-var file_data_proto_depIdxs = []int32{
+var file_proto_model_data_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -113,13 +114,13 @@ var file_data_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_data_proto_init() }
-func file_data_proto_init() {
-	if File_data_proto != nil {
+func init() { file_proto_model_data_proto_init() }
+func file_proto_model_data_proto_init() {
+	if File_proto_model_data_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_data_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_proto_model_data_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MyData); i {
 			case 0:
 				return &v.state
@@ -136,18 +137,18 @@ func file_data_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_data_proto_rawDesc,
+			RawDescriptor: file_proto_model_data_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_data_proto_goTypes,
-		DependencyIndexes: file_data_proto_depIdxs,
-		MessageInfos:      file_data_proto_msgTypes,
+		GoTypes:           file_proto_model_data_proto_goTypes,
+		DependencyIndexes: file_proto_model_data_proto_depIdxs,
+		MessageInfos:      file_proto_model_data_proto_msgTypes,
 	}.Build()
-	File_data_proto = out.File
-	file_data_proto_rawDesc = nil
-	file_data_proto_goTypes = nil
-	file_data_proto_depIdxs = nil
+	File_proto_model_data_proto = out.File
+	file_proto_model_data_proto_rawDesc = nil
+	file_proto_model_data_proto_goTypes = nil
+	file_proto_model_data_proto_depIdxs = nil
 }

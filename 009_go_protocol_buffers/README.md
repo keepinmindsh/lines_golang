@@ -34,6 +34,11 @@ message MyData {
 
 ```shell
 $ protoc -I=./proto/model/ --go_out=./  ./proto/model/*.proto
+
+$ protoc -I=./proto/model/ --go_out=./ --go-grpc_opt=paths=source_relative ./proto/model/*.proto
+
+# I 의 경로가 실제 build 시 생성되는 pg.go, grpc.pg.go 파일의 Base 경로가 됨. 
+$ protoc -I=./ --go_out=./ --go-grpc_out=./ ./proto/model/*.proto
 ```
 
 ```protobuf
@@ -77,7 +82,7 @@ message SearchRequest {
 ```
 
 - 해당 경로의 모든 proto 파일 지정하기
-    - * 에 대해서 모두 표기
+  - \* 에 대해서 모두 표기
 
 
 ## Services 
