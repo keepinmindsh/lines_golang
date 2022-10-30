@@ -68,4 +68,6 @@ func main() {
 
 	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8090")
 	log.Fatalln(gwServer.ListenAndServe())
+
+	//  curl -X POST -k http://localhost:8090/v1/example/echo -d '{"name": " hello"}'
 }
