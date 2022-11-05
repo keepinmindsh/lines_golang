@@ -7,6 +7,7 @@ type KMSAdapter interface {
 }
 
 type KMSValueT struct {
+	cmpId     string
 	plaintext []byte
 	aead      []byte
 }

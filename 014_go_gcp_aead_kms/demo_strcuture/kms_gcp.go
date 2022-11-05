@@ -11,7 +11,6 @@ import (
 )
 
 type KMSGcp struct {
-	a tink.AEAD
 }
 
 func (kms *KMSGcp) Register() {
@@ -23,28 +22,30 @@ func (kms *KMSGcp) Register() {
 	registry.RegisterKMSClient(fakeKmsClient)
 }
 
-// todo 해당 코드가 메모리 상에 떠있어야함!
-func (kms *KMSGcp) Init() {
+// returnAEAD
+// keyURI := "gcp-kms://projects/" + {project} + "/locations/global/keyRings/" + {keyRings} + "/cryptoKeys/" + {encryptKey}
+func returnAEAD(encryptKey string) tink.AEAD {
 	// KMS Setting - 해당 부분의 경우 별도 DB에 저장해두고 사용 가능함. DB에 저장해도 좋음. - Cache 를 적용해야할까?
 	fixedKeyURI := "fake-kms://CM2b3_MDElQKSAowdHlwZS5nb29nbGVhcGlzLmNvbS9nb29nbGUuY3J5cHRvLnRpbmsuQWVzR2NtS2V5EhIaEIK75t5L-adlUwVhWvRuWUwYARABGM2b3_MDIAE"
 
-	template1 := aead.KMSEnvelopeAEADKeyTemplate(fixedKeyURI, aead.AES128GCMKeyTemplate())
+	envTemplate := aead.KMSEnvelopeAEADKeyTemplate(fixedKeyURI, aead.AES256GCMKeyTemplate())
 
 	// Key Handler Initialization
-	handle1, err := keyset.NewHandle(template1)
+	keyHandle, err := keyset.NewHandle(envTemplate)
 	if err != nil {
-		fmt.Errorf("keyset.NewHandle(template1) failed: %v", err)
-	}
-	aead1, err := aead.New(handle1)
-	if err != nil {
-		fmt.Errorf("aead.New(handle) failed: %v", err)
+		fmt.Errorf("keyset.NewHandle(envTemplate) failed: %v", err)
 	}
 
-	kms.a = aead1
+	aeadKey, err := aead.New(keyHandle)
+	if err != nil {
+		fmt.Errorf("aeadKey.New(handle) failed: %v", err)
+	}
+
+	return aeadKey
 }
 
 func (kms *KMSGcp) Encrypt(masking *KMSValueT) *KMSValueR {
-	encrypted, err := kms.a.Encrypt(masking.plaintext, masking.aead)
+	encrypted, err := returnAEAD(masking.cmpId).Encrypt(masking.plaintext, masking.aead)
 	if err != nil {
 		return nil
 	}
@@ -54,7 +55,7 @@ func (kms *KMSGcp) Encrypt(masking *KMSValueT) *KMSValueR {
 }
 
 func (kms *KMSGcp) Decrypt(masking *KMSValueT) *KMSValueR {
-	retVal, err := kms.a.Decrypt(masking.plaintext, masking.aead)
+	retVal, err := returnAEAD(masking.cmpId).Decrypt(masking.plaintext, masking.aead)
 	if err != nil {
 		return nil
 	}
