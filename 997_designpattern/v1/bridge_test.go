@@ -5,34 +5,34 @@ import (
 	"testing"
 )
 
-type Computer interface {
+type ComputerBridge interface {
 	Print()
 	SetPrinter(Printer)
 }
 
-type Mac struct {
+type MacBridge struct {
 	printer Printer
 }
 
-func (m *Mac) Print() {
+func (m *MacBridge) Print() {
 	fmt.Println("Print request for mac")
 	m.printer.PrintFile()
 }
 
-func (m *Mac) SetPrinter(p Printer) {
+func (m *MacBridge) SetPrinter(p Printer) {
 	m.printer = p
 }
 
-type Windows struct {
+type WindowsBridge struct {
 	printer Printer
 }
 
-func (w *Windows) Print() {
+func (w *WindowsBridge) Print() {
 	fmt.Println("Print request for windows")
 	w.printer.PrintFile()
 }
 
-func (w *Windows) SetPrinter(p Printer) {
+func (w *WindowsBridge) SetPrinter(p Printer) {
 	w.printer = p
 }
 
@@ -59,7 +59,7 @@ func Test_Bridge(t *testing.T) {
 	hpPrinter := &Hp{}
 	epsonPrinter := &Epson{}
 
-	macComputer := &Mac{}
+	macComputer := &MacBridge{}
 
 	macComputer.SetPrinter(hpPrinter)
 	macComputer.Print()
@@ -69,7 +69,7 @@ func Test_Bridge(t *testing.T) {
 	macComputer.Print()
 	fmt.Println()
 
-	winComputer := &Windows{}
+	winComputer := &WindowsBridge{}
 
 	winComputer.SetPrinter(hpPrinter)
 	winComputer.Print()
