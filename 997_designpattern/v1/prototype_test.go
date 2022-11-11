@@ -1,4 +1,4 @@
-package main
+package designpattern
 
 import (
 	"fmt"
@@ -10,24 +10,24 @@ type Inode interface {
 	clone() Inode
 }
 
-type File struct {
+type FileProtoType struct {
 	name string
 }
 
-func (f *File) print(indentation string) {
+func (f *FileProtoType) print(indentation string) {
 	fmt.Printf("%s %s %p\n", indentation, f.name, &f.name)
 }
 
-func (f File) clone() Inode {
-	return &File{name: f.name + "_clone"}
+func (f FileProtoType) clone() Inode {
+	return &FileProtoType{name: f.name + "_clone"}
 }
 
-type Folder struct {
+type FolderProtoType struct {
 	children []Inode
 	name     string
 }
 
-func (f *Folder) print(indentation string) {
+func (f *FolderProtoType) print(indentation string) {
 	fmt.Printf("%s %s %p \n", indentation, f.name, &f.name)
 	for _, i := range f.children {
 		i.print(indentation + indentation)
@@ -36,8 +36,8 @@ func (f *Folder) print(indentation string) {
 
 // clone 프로토 타입의 핵심이 되는 부분임.
 // 그 이유는 clone 복제를 하는 방식이 으로 얕은 복사가 아닌 깊은 복사가 이뤄져야함!
-func (f *Folder) clone() Inode {
-	cloneFolder := &Folder{name: f.name + "_clone"}
+func (f *FolderProtoType) clone() Inode {
+	cloneFolder := &FolderProtoType{name: f.name + "_clone"}
 	var tempChildren []Inode
 	for _, i := range f.children {
 		copy := i.clone()
@@ -48,16 +48,16 @@ func (f *Folder) clone() Inode {
 }
 
 func TestProtoTypeMain(t *testing.T) {
-	file1 := &File{name: "File1"}
-	file2 := &File{name: "File2"}
-	file3 := &File{name: "File3"}
+	file1 := &FileProtoType{name: "File1"}
+	file2 := &FileProtoType{name: "File2"}
+	file3 := &FileProtoType{name: "File3"}
 
-	folder1 := &Folder{
+	folder1 := &FolderProtoType{
 		children: []Inode{file1},
 		name:     "Folder1",
 	}
 
-	folder2 := &Folder{
+	folder2 := &FolderProtoType{
 		children: []Inode{folder1, file2, file3},
 		name:     "Folder2",
 	}
