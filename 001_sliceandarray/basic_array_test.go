@@ -39,4 +39,39 @@ func Test_CutSlice(t *testing.T) {
 	fmt.Println(nums[:1])
 	fmt.Println(nums[:0])
 	fmt.Println(nums[:3])
+
+	// 제일 마자믹 자리의 수를 뺄 경우, 한개씩 뺄수 있음.
+	fmt.Println(nums[:len(nums)-1])
+}
+
+// Test_CapacitySlice
+/*
+=== RUN   Test_CapacitySlice
+[1 2 3 4 5]
+len: 5
+cap: 5
+
+[1 2 3]
+len: 3
+cap: 5
+
+0
+*/
+func Test_CapacitySlice(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(nums)
+	fmt.Println("len:", len(nums))
+	fmt.Println("cap:", cap(nums))
+	fmt.Println()
+
+	sliced1 := nums[:3]
+	fmt.Println(sliced1)
+	fmt.Println("len:", len(sliced1))
+	fmt.Println("cap:", cap(sliced1))
+	fmt.Println()
+
+	var sliceSample []string
+
+	fmt.Println(len(sliceSample))
 }
