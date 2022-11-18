@@ -89,3 +89,42 @@ const (
 	Subtract
 	Multiply
 )
+
+// Test_ForTime
+// time.Time 을 활용하여 날짜를 표기 및 관리하자 
+func Test_ForTime(t *testing.T) {
+	fmt.Println(isActive(time.Now(), time.Now().Add(-1), time.Now().Add(1)))
+}
+
+func isActive(now, start, stop time.Time) bool {
+	return (start.Before(now) || start.Equal(now)) && now.Before(stop)
+}
+
+func Test_ForSleep(t *testing.T) {
+	poll(10 * time.Second)
+}
+
+func poll(delay time.Duration) {
+	for {
+		fmt.Println("Do It")
+		time.Sleep(delay)
+	}
+}
+
+func Test_ForDuration(t *testing.T) {
+	newDay := time.Now().AddDate(0 /* years */, 0 /* months */, 1 /* days */)
+	maybeNewDay := time.Now().Add(24 * time.Hour)
+
+	fmt.Printf("%s, %s", newDay, maybeNewDay)
+}
+
+// {"intervalMillis": 2000}
+type Config struct {
+	IntervalMillis int `json:"intervalMillis"`
+}
+
+func Test_JsonMapping(t *testing.T) {
+	config := &Config{IntervalMillis: 1000}
+
+	fmt.Printf("%v", config.IntervalMillis)
+}
