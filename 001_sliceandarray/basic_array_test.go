@@ -75,3 +75,20 @@ func Test_CapacitySlice(t *testing.T) {
 
 	fmt.Println(len(sliceSample))
 }
+
+// /
+func Test_ArrayForLoop(t *testing.T) {
+
+	list := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	for key, value := range list {
+
+		value = value + 1
+
+		list[key] = value
+	}
+
+	for key, value := range list {
+		fmt.Printf("%v, %v \r\n", key, value)
+	}
+}
