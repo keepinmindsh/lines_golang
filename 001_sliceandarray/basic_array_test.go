@@ -76,7 +76,7 @@ func Test_CapacitySlice(t *testing.T) {
 	fmt.Println(len(sliceSample))
 }
 
-// /
+// Test_ArrayForLoop array test for rebinding values
 func Test_ArrayForLoop(t *testing.T) {
 
 	list := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}

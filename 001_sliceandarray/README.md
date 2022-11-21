@@ -52,6 +52,35 @@ fruits := make([]string, n)
 
 ```
 
+### 슬라이스의 요소값 변경 및 Loop
+
+```go
+package main
+
+import (
+  "fmt"
+  "testing"
+)
+
+// Test_ArrayForLoop array test for rebinding values
+func Test_ArrayForLoop(t *testing.T) {
+
+  list := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+  for key, value := range list {
+
+    value = value + 1
+
+    list[key] = value
+  }
+
+  for key, value := range list {
+    fmt.Printf("%v, %v \r\n", key, value)
+  }
+}
+
+```
+
 ### 슬라이스 이어붙이기 
 
 ```go
