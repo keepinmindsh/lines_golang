@@ -30,7 +30,7 @@ func CreateKeyHSM(w io.Writer, parent, id string) error {
 		CryptoKey: &kmspb.CryptoKey{
 			Purpose: kmspb.CryptoKey_ENCRYPT_DECRYPT,
 			VersionTemplate: &kmspb.CryptoKeyVersionTemplate{
-				ProtectionLevel: kmspb.ProtectionLevel_HSM,
+				ProtectionLevel: kmspb.ProtectionLevel_SOFTWARE,
 				Algorithm:       kmspb.CryptoKeyVersion_GOOGLE_SYMMETRIC_ENCRYPTION,
 			},
 
