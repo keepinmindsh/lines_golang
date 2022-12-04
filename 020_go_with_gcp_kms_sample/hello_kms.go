@@ -18,7 +18,7 @@ func main() {
 	keyId := "lines_test_key"
 
 	uriWithKeyring := fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectID, locationID, keyRingId)
-	_ = fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectID, locationID, keyRingId, keyId)
+	uriWithKey := fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectID, locationID, keyRingId, keyId)
 	// name := "projects/my-project/locations/us-east1/keyRings/my-key-ring/cryptoKeys/my-key/cryptoKeyVersions/123"x
 	uriWithKeyVersion := fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s/cryptoKeyVersions/1", projectID, locationID, keyRingId, keyId)
 
@@ -46,18 +46,27 @@ func main() {
 		}
 	}
 
-	log.Println("GetKeyVersionAttestation()")
-	// CAVIUM_V2_COMPRESSED
-	keyValidationErr := samples.GetKeyVersionAttestation(uriWithKeyVersion)
-	if keyValidationErr != nil {
-		log.Fatal(keyValidationErr.Error() + "\r\n")
+	if false {
+		log.Println("GetKeyVersionAttestation()")
+		// CAVIUM_V2_COMPRESSED
+		keyValidationErr := samples.GetKeyVersionAttestation(uriWithKeyVersion)
+		if keyValidationErr != nil {
+			log.Fatal(keyValidationErr.Error() + "\r\n")
+		}
 	}
 
-	log.Println("DisableKeyVersion()")
-	// 이미 삭제 스케쥴링이 되고 다면 활성화 불가한 것으로 판단됨.
-	keyDisableErr := samples.DisableKeyVersion(uriWithKeyVersion)
-	if keyDisableErr != nil {
-		log.Fatal(keyDisableErr.Error() + "\r\n")
+	getKeyErr := samples.GetKeyVersion(uriWithKey)
+	if getKeyErr != nil {
+		log.Fatal(getKeyErr.Error())
+	}
+
+	if false {
+		log.Println("DisableKeyVersion()")
+		// 이미 삭제 스케쥴링이 되고 다면 활성화 불가한 것으로 판단됨.
+		keyDisableErr := samples.DisableKeyVersion(uriWithKeyVersion)
+		if keyDisableErr != nil {
+			log.Fatal(keyDisableErr.Error() + "\r\n")
+		}
 	}
 
 	if false {
