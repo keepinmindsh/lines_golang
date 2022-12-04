@@ -9,8 +9,8 @@ import (
 	"log"
 )
 
-// getKeyLabels fetches the labels on a KMS key.
-func ValidateKeyLabels(w io.Writer, name string) (bool, error) {
+// GetKeyLabel fetches the labels on a KMS key.
+func GetKeyLabel(w io.Writer, name string) (bool, error) {
 	// name := "projects/my-project/locations/us-east1/keyRings/my-key-ring/cryptoKeys/my-key"
 
 	// Create the client.
