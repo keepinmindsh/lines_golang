@@ -2,12 +2,16 @@ module 020_go_with_gcp_kms_sample
 
 go 1.19
 
-require cloud.google.com/go/kms v1.6.0
+require (
+	cloud.google.com/go/kms v1.6.0
+	github.com/farshidtz/elog v1.0.1
+)
 
 require (
 	cloud.google.com/go/compute v1.12.1 // indirect
 	cloud.google.com/go/compute/metadata v0.2.1 // indirect
 	cloud.google.com/go/iam v0.6.0 // indirect
+
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect

@@ -1,20 +1,24 @@
 package main
 
 import (
-	kms "cloud.google.com/go/kms/apiv1"
-	"context"
+	"020_go_with_gcp_kms_sample/samples"
+	"fmt"
+	"log"
 )
 
 func main() {
-	ctx := context.Background()
-	// This snippet has been automatically generated and should be regarded as a code template only.
-	// It will require modifications to work:
-	// - It may require correct/in-range values for request initialization.
-	// - It may require specifying regional endpoints when creating the service client as shown in:
-	//   https://pkg.go.dev/cloud.google.com/go#hdr-Client_Options
-	c, err := kms.NewEkmClient(ctx)
+	projectID := "lines-infra"
+	locationID := "global"
+	keyRingId := "lines_keyring"
+	keyId := "lines_alarm_key"
+
+	uriWithKeyring := fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectID, locationID, keyRingId)
+	_ = fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectID, locationID, keyRingId, keyId)
+
+	samples.ListOfKeyRingsTest()
+
+	err := samples.CreateKeyHSM(log.Writer(), uriWithKeyring, keyId)
 	if err != nil {
-		// TODO: Handle error.
+		log.Fatal(err.Error())
 	}
-	defer c.Close()
 }
