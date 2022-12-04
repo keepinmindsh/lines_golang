@@ -6,12 +6,11 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/protobuf/types/known/durationpb"
-	"io"
 	"time"
 )
 
 // CreateKeyHSM creates a new symmetric encrypt/decrypt key on Cloud KMS.
-func CreateKeyHSM(w io.Writer, parent, id string) error {
+func CreateKeyHSM(parent, id string) error {
 	// parent := "projects/my-project/locations/us-east1/keyRings/my-key-ring"
 	// id := "my-hsm-encryption-key"
 
@@ -44,6 +43,6 @@ func CreateKeyHSM(w io.Writer, parent, id string) error {
 	if err != nil {
 		return fmt.Errorf("failed to create key: %v", err)
 	}
-	fmt.Fprintf(w, "Created key: %s\n", result.Name)
+	fmt.Printf("Created key: %s\n", result.Name)
 	return nil
 }
