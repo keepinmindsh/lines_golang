@@ -42,3 +42,33 @@ func Test_TypeCasting(t *testing.T) {
 	// Displaying the result
 	fmt.Printf("Multiplication = %f\n", mul)
 }
+
+func Test_TypeAssertion(t *testing.T) {
+	var i interface{} = "hello"
+
+	v, ok := i.(int)
+
+	assert.Equal(t, true, ok)
+	assert.Equal(t, "hello", v)
+}
+
+func Test_TypeAssertion_Sample(t *testing.T) {
+	var i interface{} = "hello"
+
+	s := i.(string)
+	assert.Equal(t, "hello", s)
+
+	s, ok := i.(string)
+	assert.Equal(t, true, ok)
+
+	f, ok := i.(float64)
+	assert.Equal(t, true, ok)
+	assert.Equal(t, "hello", f)
+
+	/*
+		panic: interface conversion: interface {} is string, not float64 [recovered]
+			panic: interface conversion: interface {} is string, not float64
+	*/
+	f = i.(float64)
+	assert.Equal(t, "hello", f)
+}
