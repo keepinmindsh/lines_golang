@@ -13,7 +13,10 @@ func main() {
 	//sample.TimeTimerForSeconds()
 
 	// 초당 실행되는 Ticker
-	sample.TimeSimpleTickerByOneSecond()
+	//sample.TimeSimpleTickerByOneSecond()
+
+	// 10 초후 종료되는 Ticker
+	sample.TimeSimpleTickerAfterFewSecondsFinished()
 
 	// Taking User Input
 	//sample.TakingUserInput()
