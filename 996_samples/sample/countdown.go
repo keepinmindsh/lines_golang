@@ -11,5 +11,5 @@ func CountDown() {
 			fmt.Printf(`%v ....`, count)
 		}
 	}
-
+	fmt.Println(" ")
 }
