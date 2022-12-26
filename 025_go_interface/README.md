@@ -31,4 +31,57 @@ func main() {
 덕 타이핑 - 어떤 객체가 어떤변수를 가지고 있고, 어떤 함수를 가지고 있는지와 관계없이, 해당 객체를 사용하는 쪽에서, 이런 함수를 가지고 있다면 
 이런 타입으로 보겠다고 정의할 수 있다.
 
+# Embedded Interface 
+
+Golang에서는 다음과 같이 인터페이스를 포함할 수 있습니다. 
+
+```go
+package main 
+
+type Reader interface {
+	Read() (n int, err error)
+	Close() error
+}
+
+type Writer interface {
+	Write() (n int, err error)
+	Close() error
+}
+
+type ReadWriter interface {
+	Reader 
+	Writer 
+}
+```
+
+# 타입 변환
+
+```go
+package main 
+
+func SampleCode(){
+	var a interface
+    t := a.(ConcreteType)	
+}
+
+```
+
+# 타입 변환 성공 여부
+
+```go
+package main
+
+import "fmt"
+
+func SampleCode() {
+	var a Interface
+	t, ok := a.(ConcreteType)
+
+	if ok {
+		fmt.Println("성공!!!")
+	}
+}
+
+```
+
 > [Interface](https://dev-yakuza.posstree.com/ko/golang/interface/)
