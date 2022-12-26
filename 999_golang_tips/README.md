@@ -30,6 +30,7 @@
 ##### Stack
 
 ```go
+package main
 
 func test1() {
     var d Duck = Duck{}
