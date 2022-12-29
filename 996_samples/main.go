@@ -18,8 +18,11 @@ func main() {
 	// 10 초후 종료되는 Ticker
 	//sample.TimeSimpleTickerAfterFewSecondsFinished()
 
-	// Backgroud Timer
-	sample.BackgroundTimer()
+	// Background Timer
+	//sample.BackgroundTimer()
+
+	// Clone Test
+	sample.CloneTest()
 
 	// Taking User Input
 	//sample.TakingUserInput()
