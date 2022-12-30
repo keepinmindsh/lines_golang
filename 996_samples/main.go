@@ -22,7 +22,10 @@ func main() {
 	//sample.BackgroundTimer()
 
 	// Clone Test
-	sample.CloneTest()
+	// sample.CloneTest()
+
+	// Closure Iterable
+	sample.ClosureWithIterable()
 
 	// Taking User Input
 	//sample.TakingUserInput()
