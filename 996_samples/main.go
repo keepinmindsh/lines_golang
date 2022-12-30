@@ -25,7 +25,10 @@ func main() {
 	// sample.CloneTest()
 
 	// Closure Iterable
-	sample.ClosureWithIterable()
+	//sample.ClosureWithIterable()
+
+	// Stop Command for Ticker
+	sample.StoppingTicker()
 
 	// Taking User Input
 	//sample.TakingUserInput()
