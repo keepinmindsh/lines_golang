@@ -57,9 +57,9 @@ type ReadWriter interface {
 # 타입 변환
 
 ```go
-package main 
+package main
 
-func SampleCode(){
+func SampleCode() {
 	var a interface
     t := a.(ConcreteType)	
 }
