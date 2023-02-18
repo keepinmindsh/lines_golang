@@ -22,9 +22,9 @@ func (gpt *gpt_server) GenerateText(ctx context.Context, gptRequest *pb.GPT3Requ
 
 	// GPT-3 API 호출을 위한 요청 생성
 	stream, err := client.CreateCompletionStream(ctx, gogpt.CompletionRequest{
-		Model:       "text-davinci-002",
-		Prompt:      "Hello, how are you today?",
-		MaxTokens:   60,
+		Model:       gogpt.CodexCodeDavinci002,
+		Prompt:      gptRequest.Prompt,
+		MaxTokens:   700,
 		Temperature: 0.5,
 	})
 	if err != nil {
@@ -47,6 +47,7 @@ func (gpt *gpt_server) GenerateText(ctx context.Context, gptRequest *pb.GPT3Requ
 		}
 
 		if len(response.Choices) > 0 {
+			fmt.Println("Code Sample - " + response.Choices[0].Text)
 			contents += response.Choices[0].Text
 		}
 	}

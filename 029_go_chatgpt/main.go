@@ -7,12 +7,9 @@ import (
 	"google.golang.org/grpc"
 
 	pb "github.com/keepinmindsh/go-lang-module/proto/gpt_sample"
-	gogpt "github.com/sashabaranov/go-gpt3"
 )
 
 func main() {
-	// OpenAI API Key
-	apiKey := "YOUR_API_KEY"
 
 	// gRPC 서버에 연결
 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
@@ -24,13 +21,9 @@ func main() {
 	// gRPC 클라이언트 생성
 	client := pb.NewGPT3Client(conn)
 
-	// OpenAI 클라이언트 생성
-	openaiClient := gogpt.NewClient(apiKey)
-
 	// gRPC 요청 생성
 	gpt3Req := &pb.GPT3Request{
-		Model:  req.Model,
-		Prompt: req.Prompt,
+		Prompt: "Write a golang sample code for grpc",
 	}
 
 	// gRPC 서버로 요청 전송
