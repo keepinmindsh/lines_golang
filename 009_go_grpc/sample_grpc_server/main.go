@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"sample_grpc_server/app/controller"
+	"sample_grpc_server/app/chatgpt/controller"
 
 	gogpt "github.com/sashabaranov/go-gpt3"
 	"github.com/spf13/viper"
