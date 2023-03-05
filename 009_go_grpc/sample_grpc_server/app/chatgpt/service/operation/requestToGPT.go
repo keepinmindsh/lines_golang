@@ -20,11 +20,13 @@ type RequestGPT struct {
 
 func (r *RequestGPT) RequestToGPT(ctx context.Context, gptRequest domain.GPTRequest) *pb.GPT3Response {
 
+	fmt.Println("Is IN?")
+
 	// GPT-3 API 호출을 위한 요청 생성
 	stream, err := r.client.CreateCompletionStream(ctx, gogpt.CompletionRequest{
-		Model:       gogpt.GPT3TextDavinci003,
+		Model:       gogpt.GPT3TextDavinci002,
 		Prompt:      gptRequest.Prompt,
-		MaxTokens:   700,
+		MaxTokens:   60,
 		Temperature: 0.5,
 	})
 	if err != nil {
@@ -36,6 +38,7 @@ func (r *RequestGPT) RequestToGPT(ctx context.Context, gptRequest domain.GPTRequ
 	var contents string
 
 	for {
+		// todo 해당 코드에 데이터가 안들어온다. 설정에 대한 공부가 추가적으로 필요함.
 		response, err := stream.Recv()
 		if errors.Is(err, io.EOF) {
 			fmt.Println("Stream finished")

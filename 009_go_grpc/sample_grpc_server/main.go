@@ -32,9 +32,9 @@ func main() {
 	newServer := grpc.NewServer()
 
 	// Set up Viper
-	viper.SetConfigName("config")                                          // name of config file (without extension)
-	viper.AddConfigPath("/Users/howard/sources/02_bong_git/lines_golang/") // search the current directory for the config file
-	viper.SetConfigType("yaml")                                            // type of config file
+	viper.SetConfigName("config") // name of config file (without extension)
+	viper.AddConfigPath("../../") // search the current directory for the config file
+	viper.SetConfigType("yaml")   // type of config file
 
 	client := gogpt.NewClient(viper.GetString("gpt.client_key"))
 
@@ -43,7 +43,6 @@ func main() {
 		panic(fmt.Errorf("fatal error config file: %s", err))
 	}
 
-	NewGreeter(newServer)
 	controller.NewChatGPT(newServer, logger, client)
 
 	log.Printf("server listening at %v", lis.Addr())
