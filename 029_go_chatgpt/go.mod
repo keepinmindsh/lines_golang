@@ -3,7 +3,7 @@ module 029_go_chatgpt
 go 1.19
 
 require (
-	github.com/keepinmindsh/go-lang-module v1.0.33
+	github.com/keepinmindsh/go-lang-module v1.0.35
 	github.com/sashabaranov/go-gpt3 v0.0.0-20230128191859-3695eb3ade92
 	google.golang.org/grpc v1.53.0
 )
