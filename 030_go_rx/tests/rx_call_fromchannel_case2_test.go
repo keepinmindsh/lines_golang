@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func Test_Call_ObservableFromSource(t *testing.T) {
+func Test_Call_ObservableFromChannel(t *testing.T) {
 	ch := make(chan rxgo.Item)
 	observable := rxgo.FromEventSource(ch)
 
@@ -28,18 +28,18 @@ func Test_Call_ObservableFromSource(t *testing.T) {
 
 	go func() {
 		defer wg.Done()
-		subscribeForFromSource(observable, "sub1")
+		subscribeForFromChannel(observable, "sub1")
 	}()
 
 	go func() {
 		defer wg.Done()
-		subscribeForFromSource(observable, "sub2")
+		subscribeForFromChannel(observable, "sub2")
 	}()
 
 	wg.Wait()
 }
 
-func subscribeForFromSource(observable rxgo.Observable, subId string) {
+func subscribeForFromChannel(observable rxgo.Observable, subId string) {
 	subscriber := observable.Observe()
 
 	for item := range subscriber {
