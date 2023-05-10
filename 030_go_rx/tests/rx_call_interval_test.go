@@ -8,10 +8,11 @@ import (
 )
 
 func Test_IntervalCallSample(t *testing.T) {
+
 	observable := rxgo.Interval(rxgo.WithDuration(5 * time.Second))
 
 	observable.DoOnNext(func(i interface{}) {
-		fmt.Printf("%v", i)
+		t.Logf("%v", i)
 	})
 
 	observe := observable.Observe()
