@@ -16,8 +16,6 @@ func Test_AllSample(t *testing.T) {
 		Observe()
 
 	for item := range items {
-		if item.E != nil {
-			t.Logf("Value : %v", item.V)
-		}
+		t.Logf("Value : %v", item.V)
 	}
 }
