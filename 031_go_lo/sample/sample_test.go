@@ -28,7 +28,7 @@ func Test_MapLoByFunction(t *testing.T) {
 	}
 }
 
-func Test_MapLoByFunctionParrelel(t *testing.T) {
+func Test_MapLoByFunctionParallel(t *testing.T) {
 	strings := lop.Map([]func() int{Sample1, Sample2, Sample3, Sample4}, func(x func() int, index int) int {
 		return x()
 	})
