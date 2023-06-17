@@ -30,6 +30,8 @@ func Test_ConvertStringToNumber(t *testing.T) {
     %s
 	`, i, k, f, s, err)
 
+	fmt.Printf(`#으로 표시할 경우 값이 바인딩 됩니다. #{i} 세상 편하네요~`)
+
 	s = fmt.Sprint(3.14)
 	fmt.Printf("%s\n", s)
 	s = fmt.Sprintf("%x", 13402077)
