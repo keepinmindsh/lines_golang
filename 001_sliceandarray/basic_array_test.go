@@ -22,6 +22,10 @@ func Test_DeclareSlice(t *testing.T) {
 
 	fmt.Println(fruits)
 
+	for _, value := range fruits {
+		fmt.Print(`값이 Loop 도나여? #{value}`)
+	}
+
 	// 슬라이스가 몇개 들어갈지 알고 있는 경우
 	apples := make([]string, 100)
 
