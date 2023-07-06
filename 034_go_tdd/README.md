@@ -41,4 +41,6 @@ type (
 $ mockgen -source=034_go_tdd/domain/currency/domain.go -destination=034_go_tdd/domain/currency/mockgen/domain.go
 ```
 
--
+- 실제의 생성된 결과 이미지 
+
+![Mockgen Samples](https://github.com/keepinmindsh/lines_golang/blob/main/034_go_tdd/mockgen_sample.png)
