@@ -46,3 +46,8 @@ $ mockgen -source=034_go_tdd/domain/currency/domain.go -destination=034_go_tdd/d
 ![Mockgen Samples](https://github.com/keepinmindsh/lines_golang/blob/main/034_go_tdd/mockgen_sample.png)
 
 ## 실제 테스트 코드 부터 시작해보기 
+
+> BDD ( Behavior Driven Development  )
+
+- Mocking에 의한 사전 테스트 코드를 작성하기 
+  - Input, Output에 대한 예측 코드 작성하기 

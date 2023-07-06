@@ -8,19 +8,25 @@ import (
 )
 
 func Test_GetSumCurrencyFromInput(t *testing.T) {
-	t.Run("Wrong Calculate Value return", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
+	t.Run("Calculate price with stock count", func(t *testing.T) {
+		t.Run("Test with mocking", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
 
-		// Assert that Bar() is invoked.
-		defer ctrl.Finish()
+			// Assert that Bar() is invoked.
+			defer ctrl.Finish()
 
-		mockCurrencyService := mock_currency.NewMockCurrencyService(ctrl)
+			mockCurrencyService := mock_currency.NewMockCurrencyService(ctrl)
 
-		mockCurrencyService.EXPECT().CalculateStockWithPrice(25, 1000.0).Return(25000.0).AnyTimes()
+			mockCurrencyService.EXPECT().CalculateStockWithPrice(25, 1000.0).Return(25000.0).AnyTimes()
 
-		price := mockCurrencyService.CalculateStockWithPrice(25, 1000.0)
+			price := mockCurrencyService.CalculateStockWithPrice(25, 1000.0)
 
-		assert.IsEqual(25000.0, price)
+			assert.IsEqual(25000.0, price)
+		})
+
+		t.Run("Real Implementation", func(t *testing.T) {
+
+		})
 	})
 
 }
