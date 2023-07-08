@@ -49,6 +49,7 @@ $ mockgen -source=034_go_tdd/domain/currency/domain.go -destination=034_go_tdd/d
 
 > BDD ( Behavior Driven Development  )
 
+- 기본 테스트 코드를 위한 환경 구성하기 
 - Mocking에 의한 사전 테스트 코드를 작성하기 
   - Input, Output 에 대한 예측 코드 작성하기 
     - CalculateStockWithPrice 에 대해서 작성하기 
@@ -56,3 +57,6 @@ $ mockgen -source=034_go_tdd/domain/currency/domain.go -destination=034_go_tdd/d
     - GetSumAllPriceWithStock 에 대해서 작성하기 
   - 각 단위 테스트 코드에 대해서 Mocking 을 통해서 Input/Output 을 정의하고, 파악이 가능하다. 
   - CalculateStockWithPrice 실제 코드를 빠르게 값 반환 처리 
+    - 실패 코드를 작성한다. 
+    - 성공 코드를 작성한다. 
+    - 단계별로 코드를 작성한다. 
