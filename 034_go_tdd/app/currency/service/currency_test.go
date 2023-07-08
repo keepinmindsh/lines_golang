@@ -19,7 +19,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 
 			price := mockCurrencyService.CalculateStockWithPrice(25, 1000.0)
 
-			assert.IsEqual(25000.0, price)
+			assert.Equal(t, 25000.0, price)
 		})
 
 		t.Run("Currency Mocking - GetPriceWithCurrency", func(t *testing.T) {
@@ -33,7 +33,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 
 			price := mockCurrencyService.GetPriceWithCurrency("USD", 25000.0)
 
-			assert.IsEqual(32450000.0, price)
+			assert.Equal(t, 32450000.0, price)
 		})
 
 		t.Run("Currency Mocking - GetSumAllPriceWithStock", func(t *testing.T) {
@@ -46,7 +46,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 
 			price := mockCurrencyService.GetSumAllPriceWithStock([]float64{32450000.0, 32450000.0}...)
 
-			assert.IsEqual(64900000.0, price)
+			assert.Equal(t, 64900000.0, price)
 		})
 
 		// 각 단위 메소드를 빠르게 테스트할 수 있도록 실제 코드에 대한 구현을 정의 한다.
@@ -55,7 +55,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 
 			stockWithPrice := currencySvc.CalculateStockWithPrice(250, 25000.0)
 
-			assert.IsEqual(25000.0, stockWithPrice)
+			assert.Equal(t, 25000.0, stockWithPrice)
 		})
 	})
 
