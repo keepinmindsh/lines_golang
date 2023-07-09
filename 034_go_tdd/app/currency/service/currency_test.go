@@ -50,7 +50,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 		})
 
 		// 각 단위 메소드를 빠르게 테스트할 수 있도록 실제 코드에 대한 구현을 정의 한다.
-		t.Run("CalculateStockWithPrice", func(t *testing.T) {
+		t.Run("Unit Test - CalculateStockWithPrice", func(t *testing.T) {
 			currencySvc := NewCurrencyService()
 
 			stockWithPrice := currencySvc.CalculateStockWithPrice(250, 25000.0)
@@ -58,7 +58,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 			assert.Equal(t, 25000.0, stockWithPrice)
 		})
 
-		t.Run("GetPriceWithCurrency", func(t *testing.T) {
+		t.Run("Unit Test - GetPriceWithCurrency", func(t *testing.T) {
 			currencySvc := NewCurrencyService()
 
 			currencyPrice := currencySvc.GetPriceWithCurrency("USD", 25000.0)
@@ -66,7 +66,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 			assert.Equal(t, 32450000.0, currencyPrice)
 		})
 
-		t.Run("GetSumAllPriceWithStock", func(t *testing.T) {
+		t.Run("Unit Test - GetSumAllPriceWithStock", func(t *testing.T) {
 			currencySvc := NewCurrencyService()
 
 			sumPrice := currencySvc.GetSumAllPriceWithStock([]float64{32450000.0, 32450000.0}...)
@@ -74,7 +74,7 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 			assert.Equal(t, 64900000.0, sumPrice)
 		})
 
-		t.Run("GetSumCurrency", func(t *testing.T) {
+		t.Run("Integration Test - GetSumCurrency", func(t *testing.T) {
 			currencySvc := NewCurrencyService()
 
 			stockWithPrice := currencySvc.CalculateStockWithPrice(250, 25000.0)
