@@ -63,15 +63,15 @@ func Test_GetSumCurrencyFromInput(t *testing.T) {
 
 			currencyPrice := currencySvc.GetPriceWithCurrency("USD", 25000.0)
 
-			assert.Equal(t, 25000.0, currencyPrice)
+			assert.Equal(t, 32450000.0, currencyPrice)
 		})
 
 		t.Run("GetSumAllPriceWithStock", func(t *testing.T) {
 			currencySvc := NewCurrencyService()
 
-			sumPrice := currencySvc.GetSumAllPriceWithStock([]float64{25000.0}...)
+			sumPrice := currencySvc.GetSumAllPriceWithStock([]float64{32450000.0, 32450000.0}...)
 
-			assert.Equal(t, 25000.0, sumPrice)
+			assert.Equal(t, 64900000.0, sumPrice)
 		})
 	})
 
