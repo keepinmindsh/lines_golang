@@ -48,7 +48,9 @@ func (v *volvo) MoveBackward() {
 }
 
 func (v *volvo) Stop() {
+	fmt.Println("정지")
 }
 
 func (v *volvo) StartDriving() {
+	fmt.Println("부릉")
 }
