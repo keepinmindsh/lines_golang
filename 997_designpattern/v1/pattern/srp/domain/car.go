@@ -1,10 +1,10 @@
 package domain
 
 type (
-	Car interface {
+	Tire interface {
 		MoveForward()
 		MoveBackward()
 		Stop()
-		StartDriving()
+		Start()
 	}
 )

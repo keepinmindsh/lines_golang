@@ -9,9 +9,9 @@ import (
 func main() {
 	newMaps := maps.NewMaps(5, 5)
 
-	newCar := car.NewCar(&newMaps)
+	newCar := car.NewTire(&newMaps)
 
-	newCar.StartDriving()
+	newCar.Start()
 	newCar.MoveForward()
 	newCar.MoveForward()
 	newCar.MoveForward()

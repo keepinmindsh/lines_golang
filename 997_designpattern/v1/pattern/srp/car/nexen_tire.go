@@ -10,7 +10,7 @@ type volvo struct {
 	maps *maps.Maps
 }
 
-func NewCar(maps *maps.Maps) domain.Car {
+func NewTire(maps *maps.Maps) domain.Tire {
 	return &volvo{
 		maps: maps,
 	}
@@ -51,6 +51,6 @@ func (v *volvo) Stop() {
 	fmt.Println("정지")
 }
 
-func (v *volvo) StartDriving() {
+func (v *volvo) Start() {
 	fmt.Println("부릉")
 }
