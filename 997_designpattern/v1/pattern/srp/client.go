@@ -9,7 +9,7 @@ import (
 func main() {
 	newMaps := maps.NewMaps(5, 5)
 
-	newCar := car.NewTire(&newMaps)
+	newCar := car.NewNexenTire(&newMaps)
 
 	newCar.Start()
 	newCar.MoveForward()

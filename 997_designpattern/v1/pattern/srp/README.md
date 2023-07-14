@@ -17,7 +17,7 @@
 
 Nexen Tire 는 오직 Nexen Tire를 위한 책임만을 가진다. 바퀴는 앞, 뒤로만 움직일 수 있다.  
 Tire가 가져야할 책임은 하나의 책임만을 가진다. 만약 여기에서 왼쪽, 오른쪽으로 가게하는 것이 바퀴의 역할인가? 아니다.  
-그렇기에 왼쪽, 오른쪽에 대한 처리를 위해서 Move Forward와 Backward의 처리 프로세스는 변경되어야 한다! 
+그렇기에 왼쪽, 오른쪽에 대한 처리를 위[nexen_tire.go](car%2Fnexen_tire.go)해서 Move Forward와 Backward의 처리 프로세스는 변경되어야 한다! 
 
 이 때의 변경이 Forward 안에 왼쪽, 오른쪽으로 가는 기능을 넣으면 SRP의 Rule 깨게 된다.   
 

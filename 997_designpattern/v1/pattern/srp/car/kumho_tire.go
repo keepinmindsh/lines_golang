@@ -6,18 +6,18 @@ import (
 	"fmt"
 )
 
-type nexenTire struct {
+type kumhoTire struct {
 	maps     *maps.Maps
 	steering *steering
 }
 
-func NewNexenTire(maps *maps.Maps) domain.Tire {
-	return &nexenTire{
+func NewKumhoTire(maps *maps.Maps) domain.Tire {
+	return &kumhoTire{
 		maps: maps,
 	}
 }
 
-func (v *nexenTire) MoveForward() {
+func (v *kumhoTire) MoveForward() {
 	coordinate := v.maps.Coordinate
 
 	colLength := len(coordinate)
@@ -42,7 +42,7 @@ func (v *nexenTire) MoveForward() {
 	}
 }
 
-func (v *nexenTire) MoveBackward() {
+func (v *kumhoTire) MoveBackward() {
 	coordinate := v.maps.Coordinate
 
 	switch v.steering.Vector {
@@ -65,10 +65,10 @@ func (v *nexenTire) MoveBackward() {
 
 }
 
-func (v *nexenTire) Stop() {
+func (v *kumhoTire) Stop() {
 	fmt.Println("정지")
 }
 
-func (v *nexenTire) Start() {
+func (v *kumhoTire) Start() {
 	fmt.Println("부릉")
 }
