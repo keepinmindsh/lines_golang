@@ -7,6 +7,6 @@ type Car struct {
 	domain.Steering
 }
 
-func NewCar(tire domain.Tire, steering domain.Steering) Car {
+func NewCar(tire domain.Tire, steering domain.Steering) domain.Car {
 	return Car{tire, steering}
 }

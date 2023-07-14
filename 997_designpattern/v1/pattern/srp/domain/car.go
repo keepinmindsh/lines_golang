@@ -13,4 +13,9 @@ type (
 		LeftDiagonal()
 		Straight()
 	}
+
+	Car interface {
+		Tire
+		Steering
+	}
 )
