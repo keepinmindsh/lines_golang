@@ -7,7 +7,8 @@ import (
 )
 
 type tire struct {
-	maps *maps.Maps
+	maps     *maps.Maps
+	steering *steering
 }
 
 func NewTire(maps *maps.Maps) domain.Tire {
@@ -21,28 +22,45 @@ func (v *tire) MoveForward() {
 
 	colLength := len(coordinate)
 
-	if v.maps.CurrentX+1 < colLength {
-		coordinate[v.maps.CurrentX][v.maps.CurrentY] = 0
-		coordinate[v.maps.CurrentX+1][v.maps.CurrentY] = 1
-		v.maps.CurrentX = v.maps.CurrentX + 1
-	}
+	switch v.steering.Vector {
+	case Straight:
+		if v.maps.CurrentX+1 < colLength {
+			coordinate[v.maps.CurrentX][v.maps.CurrentY] = 0
+			coordinate[v.maps.CurrentX+1][v.maps.CurrentY] = 1
+			v.maps.CurrentX = v.maps.CurrentX + 1
+		}
 
-	if v.maps.CurrentX+1 >= colLength {
-		fmt.Println("your car cannot move forward anymore!")
+		if v.maps.CurrentX+1 >= colLength {
+			fmt.Println("your car cannot move forward anymore!")
+		}
+
+		break
+	case RightDiagonal:
+		break
+	case LeftDiagonal:
+		break
 	}
 }
 
 func (v *tire) MoveBackward() {
 	coordinate := v.maps.Coordinate
 
-	if v.maps.CurrentX-1 < 0 {
-		fmt.Println("your car cannot move backward anymore!")
-	}
+	switch v.steering.Vector {
+	case Straight:
+		if v.maps.CurrentX-1 < 0 {
+			fmt.Println("your car cannot move backward anymore!")
+		}
 
-	if v.maps.CurrentX-1 >= 0 {
-		coordinate[v.maps.CurrentX][v.maps.CurrentY] = 0
-		coordinate[v.maps.CurrentX-1][v.maps.CurrentY] = 1
-		v.maps.CurrentX = v.maps.CurrentX - 1
+		if v.maps.CurrentX-1 >= 0 {
+			coordinate[v.maps.CurrentX][v.maps.CurrentY] = 0
+			coordinate[v.maps.CurrentX-1][v.maps.CurrentY] = 1
+			v.maps.CurrentX = v.maps.CurrentX - 1
+		}
+		break
+	case RightDiagonal:
+		break
+	case LeftDiagonal:
+		break
 	}
 
 }
