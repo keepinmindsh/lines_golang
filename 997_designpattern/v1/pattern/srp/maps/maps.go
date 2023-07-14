@@ -1,9 +1,12 @@
 package maps
 
 type Maps struct {
-	Coordinate [][]int
-	CurrentX   int
-	CurrentY   int
+	Coordinate      [][]int
+	CurrentX        int
+	CurrentY        int
+	IsRightDiagonal bool
+	IsLeftDiagonal  bool
+	IsStraight      bool
 }
 
 func NewMaps(x, y int) Maps {
@@ -20,8 +23,11 @@ func NewMaps(x, y int) Maps {
 	}
 
 	return Maps{
-		Coordinate: coordinate,
-		CurrentX:   0,
-		CurrentY:   0,
+		Coordinate:      coordinate,
+		CurrentX:        0,
+		CurrentY:        0,
+		IsRightDiagonal: false,
+		IsLeftDiagonal:  false,
+		IsStraight:      false,
 	}
 }

@@ -6,17 +6,17 @@ import (
 	"fmt"
 )
 
-type volvo struct {
+type tire struct {
 	maps *maps.Maps
 }
 
 func NewTire(maps *maps.Maps) domain.Tire {
-	return &volvo{
+	return &tire{
 		maps: maps,
 	}
 }
 
-func (v *volvo) MoveForward() {
+func (v *tire) MoveForward() {
 	coordinate := v.maps.Coordinate
 
 	colLength := len(coordinate)
@@ -32,7 +32,7 @@ func (v *volvo) MoveForward() {
 	}
 }
 
-func (v *volvo) MoveBackward() {
+func (v *tire) MoveBackward() {
 	coordinate := v.maps.Coordinate
 
 	if v.maps.CurrentX-1 < 0 {
@@ -47,10 +47,10 @@ func (v *volvo) MoveBackward() {
 
 }
 
-func (v *volvo) Stop() {
+func (v *tire) Stop() {
 	fmt.Println("정지")
 }
 
-func (v *volvo) Start() {
+func (v *tire) Start() {
 	fmt.Println("부릉")
 }

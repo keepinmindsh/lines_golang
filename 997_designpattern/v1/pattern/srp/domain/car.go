@@ -7,4 +7,10 @@ type (
 		Stop()
 		Start()
 	}
+
+	Steering interface {
+		RightDiagonal()
+		LeftDiagonal()
+		Straight()
+	}
 )
