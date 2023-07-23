@@ -16,7 +16,7 @@ const MAX_UPLOAD_SIZE = 1024 * 1024 // 1MB
 func Test_FileUpload(t *testing.T) {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", indexHandler)
-	mux.HandleFunc("/upload", uploadHandler)
+	mux.HandleFunc("/upload", uploadHandlerMultipleFile)
 
 	if err := http.ListenAndServe(":4500", mux); err != nil {
 		log.Fatal(err)
