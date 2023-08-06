@@ -1,12 +1,17 @@
 package car
 
-import "oop/domain"
+import (
+	"design_pattern/oop/domain"
+)
 
-type Car struct {
+type RealCar struct {
 	domain.Tire
 	domain.Steering
 }
 
 func NewCar(tire domain.Tire, steering domain.Steering) domain.Car {
-	return Car{tire, steering}
+	return RealCar{
+		Tire:     tire,
+		Steering: steering,
+	}
 }

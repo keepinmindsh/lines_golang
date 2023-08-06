@@ -11,7 +11,8 @@ type (
 	Steering interface {
 		RightDiagonal()
 		LeftDiagonal()
-		Straight()
+		Strait()
+		CurrentVector() Vector
 	}
 
 	Car interface {
