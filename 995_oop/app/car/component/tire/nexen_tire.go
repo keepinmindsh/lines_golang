@@ -36,11 +36,11 @@ func (v *nexenTire) MoveForward() {
 			fmt.Println("your car cannot move forward anymore!")
 		}
 
-		fmt.Printf("Straight, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Foward, Straight, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	case code.RightDiagonal:
-		fmt.Printf("After RightDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Foward, After RightDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	case code.LeftDiagonal:
-		fmt.Printf("After LeftDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Foward, After LeftDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	}
 }
 
@@ -59,11 +59,11 @@ func (v *nexenTire) MoveBackward() {
 			v.maps.CurrentX = v.maps.CurrentX - 1
 		}
 
-		fmt.Printf("Straight, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Backward, Straight, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	case code.RightDiagonal:
-		fmt.Printf("After RightDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Backward, After RightDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	case code.LeftDiagonal:
-		fmt.Printf("After LeftDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
+		fmt.Printf("Backward, After LeftDiagonal, Current Position - x : %v, y : %v \r\n", v.maps.CurrentX, v.maps.CurrentY)
 	}
 
 }
