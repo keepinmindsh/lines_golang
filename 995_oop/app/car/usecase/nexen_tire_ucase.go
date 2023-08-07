@@ -1,4 +1,4 @@
-package tire
+package usecase
 
 import (
 	maps "design_pattern/oop/app/maps"

@@ -1,7 +1,7 @@
-package car
+package factory
 
 import (
-	"design_pattern/oop/app/car/component/tire"
+	"design_pattern/oop/app/car/usecase"
 	maps "design_pattern/oop/app/maps"
 	"design_pattern/oop/domain"
 )
@@ -18,7 +18,7 @@ func NewTire(tireName TireName, maps *maps.Maps, steering domain.Steering) domai
 	case KUMHO:
 		return nil
 	case NEXEN:
-		return tire.NewNexenTire(maps, steering)
+		return usecase.NewNexenTire(maps, steering)
 	}
 
 	return nil

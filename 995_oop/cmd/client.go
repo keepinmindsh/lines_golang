@@ -1,7 +1,7 @@
 package main
 
 import (
-	car "design_pattern/oop/app/car"
+	"design_pattern/oop/app/car/delivery/factory"
 	maps "design_pattern/oop/app/maps"
 	"design_pattern/oop/domain"
 )
@@ -11,9 +11,9 @@ func main() {
 
 	var vector domain.Vector
 
-	steering := car.NewSteering(vector)
+	steering := factory.NewSteering(vector)
 
-	myCar := car.NewCar(car.NewTire(car.NEXEN, &newMaps, steering), steering)
+	myCar := factory.NewCar(factory.NewTire(factory.NEXEN, &newMaps, steering), steering)
 
 	myCar.Start()
 

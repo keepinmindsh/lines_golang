@@ -1,4 +1,4 @@
-package car
+package factory
 
 import (
 	"design_pattern/oop/domain"
