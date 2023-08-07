@@ -1,4 +1,4 @@
-package factory
+package steering
 
 import (
 	"design_pattern/oop/domain"
@@ -11,17 +11,17 @@ type steering struct {
 }
 
 func (s *steering) RightDiagonal() {
-	fmt.Println("우회전")
+	fmt.Println("우회전 설정")
 	s.Vector = code.RightDiagonal
 }
 
 func (s *steering) LeftDiagonal() {
-	fmt.Println("좌회전")
-	s.Vector = code.RightDiagonal
+	fmt.Println("좌회전 설정")
+	s.Vector = code.LeftDiagonal
 }
 
 func (s *steering) Strait() {
-	fmt.Println("직진")
+	fmt.Println("직진 설정")
 	s.Vector = code.Straight
 }
 

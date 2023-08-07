@@ -19,4 +19,8 @@ type (
 		Tire
 		Steering
 	}
+
+	Moving interface {
+		Move()
+	}
 )

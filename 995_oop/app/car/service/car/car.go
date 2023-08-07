@@ -1,4 +1,4 @@
-package factory
+package car
 
 import (
 	"design_pattern/oop/domain"
@@ -7,11 +7,13 @@ import (
 type RealCar struct {
 	domain.Tire
 	domain.Steering
+	domain.Moving
 }
 
-func NewCar(tire domain.Tire, steering domain.Steering) domain.Car {
+func NewCar(tire domain.Tire, steering domain.Steering, moving domain.Moving) domain.Car {
 	return RealCar{
 		Tire:     tire,
 		Steering: steering,
+		Moving:   moving,
 	}
 }

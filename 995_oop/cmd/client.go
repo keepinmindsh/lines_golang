@@ -1,7 +1,10 @@
 package main
 
 import (
-	"design_pattern/oop/app/car/delivery/factory"
+	"design_pattern/oop/app/car/service/car"
+	"design_pattern/oop/app/car/service/moving"
+	"design_pattern/oop/app/car/service/steering"
+	"design_pattern/oop/app/car/service/tire"
 	maps "design_pattern/oop/app/maps"
 	"design_pattern/oop/domain"
 )
@@ -11,14 +14,14 @@ func main() {
 
 	var vector domain.Vector
 
-	steering := factory.NewSteering(vector)
+	steering := steering.NewSteering(vector)
+	moving := moving.NewMoving(domain.TICO, &newMaps)
 
-	myCar := factory.NewCar(factory.NewTire(factory.NEXEN, &newMaps, steering), steering)
+	myCar := car.NewCar(tire.NewTire(tire.NEXEN, steering, moving), steering, moving)
 
 	myCar.Start()
 
 	myCar.LeftDiagonal()
-	myCar.MoveBackward()
 	myCar.MoveForward()
 
 	myCar.Stop()
