@@ -43,15 +43,15 @@ SW 적으로는 여러개의 Thread를 생성해서 프로그램 하다 할당�
 → 고언어는 goroutine 이라는 user level thread m개가 n 개의 OS Thread 위에서 돌아가는 것이다.     
 
 
-# GOMAXPROCS Setting 
+# GOMAXPROCS 설정 
 
-- GOMAXPROCS Configuration 
+- GOMAXPROCS 환경설정  
   - GOMAXPROCS is a configuration parameter in Go that specifies the maximum number of OS threads that can execute Go code simultaneously.
-- Default Setting
+- 기본값 세팅 
   - By default, GOMAXPROCS is set to the number of logical CPUs available on the machine, allowing Go to automatically utilize the available cores for parallel execution. 
-- Performance Optimization
+- 성능 최적화 
   - Developers can adjust the value of GOMAXPROCS based on the specific workload and hardware characteristics to optimize the performance of their applications.
-- Balancing Act:
+- Balancing Act
   - Setting GOMAXPROCS too high may lead to increased contention and context switching overhead. Finding the right balance is crucial for achieving optimal parallelism.
 
 ## P99 latency 
