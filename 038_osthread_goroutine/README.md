@@ -67,4 +67,7 @@ SW 적으로는 여러개의 Thread를 생성해서 프로그램 하다 할당�
 # 참고 링크 
 
 > [https://jusths.tistory.com/142](https://jusths.tistory.com/142)   
-> [Memory FootPrint / 메모리 사용량](https://en.wikipedia.org/wiki/Memory_footprint)   
+> [Memory FootPrint / 메모리 사용량](https://en.wikipedia.org/wiki/Memory_footprint)    
+> [Performance Bottlenecks go apps](https://engineering.grab.com/performance-bottlenecks-go-apps)     
+> [runtime: make the proportion of CPU the GC uses based on actual available CPU time and not GOMAXPROCS](https://github.com/golang/go/issues/59715)      
+> [Surprise at CPU Hogging in Golang](https://winder.ai/cpu-hogging-in-golang/)   
