@@ -71,3 +71,4 @@ SW 적으로는 여러개의 Thread를 생성해서 프로그램 하다 할당�
 > [Performance Bottlenecks go apps](https://engineering.grab.com/performance-bottlenecks-go-apps)     
 > [runtime: make the proportion of CPU the GC uses based on actual available CPU time and not GOMAXPROCS](https://github.com/golang/go/issues/59715)      
 > [Surprise at CPU Hogging in Golang](https://winder.ai/cpu-hogging-in-golang/)   
+> [Optimizing a Golang Service to Reduce Over 40% CPU](https://coralogix.com/blog/optimizing-a-golang-service-to-reduce-over-40-cpu/)
