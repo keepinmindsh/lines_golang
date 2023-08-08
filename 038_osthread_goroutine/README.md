@@ -1,10 +1,10 @@
 # Process, OS Thread, Goroutine  
 
-- M : Machine을 의미하며 OS Thread 이다. OS Thread로 부르겠다.
-- P : Logical Processor 를 의미하며 Context 로도 불린다. Process로 부르겠다. 
+- M : Machine 을 의미하며 OS Thread 이다. OS Thread 로 부르겠다.
+- P : Logical Processor 를 의미하며 Context 로도 불린다. Process 로 부르겠다. 
 - G : GoRoutine 이다.  
 
-go routine은 OS Thread 위에서 돌아가며 OS Thread가 실행되려면 Process 하나를 잡고 있어야 한다.      
+go routine 은 OS Thread 위에서 돌아가며 OS Thread 가 실행되려면 Process 하나를 잡고 있어야 한다.      
 
 ## 각 항목별의 설명 
 
@@ -36,7 +36,7 @@ SW 적으로는 여러개의 Thread를 생성해서 프로그램 하다 할당�
   - 즉, OS Thread 는 OS가 생성하고 관리해주는데, 
   - Goroutine 은 Go runtime 이 생성하고 관리해주는 것이다. 
 
-여기에서 n:m 이라는 표현이 나온다.    
+여기에서 n:m 이라는 표현이 나온다.      
 1) 1:1 이라면 1개의 user level thread가 1개의 OS Thread 위에서 돌아가는 거다.   
 2) n:1 이라면 n개의 user level thread가 1개의 OS Thread 위에서 돌아가는 거다.    
 3) m:n 이라면 m개의 user level thread가 n개의 OS Thread 위에서 돌아가는 거다.    
