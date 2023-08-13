@@ -20,5 +20,8 @@ func main() {
 		}(i)
 	}
 
-	fmt.Scanln()
+	_, err := fmt.Scanln()
+	if err != nil {
+		panic(err)
+	}
 }
