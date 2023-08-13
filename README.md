@@ -1,5 +1,11 @@
 # Golang
 
+## Guide for Dev ( Useful )
+
+### Pre Commit Hook Setting
+
+## Study References 
+
 ### Basic of Golang 
 
 - [Golang - Basic](https://github.com/keepinmindsh/lines_golang/tree/main/000_basic)

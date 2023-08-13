@@ -1,0 +1,28 @@
+# Pre Commit 설정하기
+
+Install PreCommit
+
+```shell
+brew install pre-commit
+```
+
+Make file ( .pre-commit-config.yaml ) on your root project
+
+```yaml 
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.0
+    hooks:
+      - id: go-fmt
+      - id: go-imports
+      - id: no-go-testing
+      - id: golangci-lint
+      - id: go-unit-tests
+```
