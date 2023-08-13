@@ -21,7 +21,7 @@ repos:
     rev: v0.5.0
     hooks:
       - id: go-fmt
-      # - id: go-imports 위의 버전 repo에서 동작하지 않음 추후 버전 체크 필요
+      - id: go-imports
       - id: no-go-testing
       # - id: golangci-lint 위의 버전 repo에서 동작하지 않음 추후 버전 체크 필요
       #- id: go-unit-tests
