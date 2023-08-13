@@ -27,6 +27,14 @@ repos:
       #- id: go-unit-tests
 ```
 
+위와 같이 root 프로젝트에 설정후 shell을 통해서 아래의 명령어를 실행한다.
+
+```
+$ pre-commit install
+```
+
+이후 부터 commit 시점에 사전 체크해서 수정 및 배포가 가능하다.
+
 ## 만약, .pre-commit-config.yaml 를 추가로 수정하는 경우
 
 ```
