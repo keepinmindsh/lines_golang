@@ -4,6 +4,8 @@
 
 ### Pre Commit Hook Setting
 
+- [Golang Pre Commit 세팅해서 활용하기](https://github.com/keepinmindsh/lines_golang/blob/main/1000_docs/PRECOMMIT.md)
+
 ## Study References 
 
 ### Basic of Golang 
