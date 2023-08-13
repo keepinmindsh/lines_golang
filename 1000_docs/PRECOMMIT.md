@@ -47,6 +47,14 @@ $ pre-commit install
 
 - [https://pkg.go.dev/golang.org/x/tools/cmd/goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 
+> 참고로 multimodule로 구성된 repo의 경ㅎ우 root project에서 현재 동작하지 않는 케이스가 존재하므로 참고 할 것
+
+아래의 케이스 참고할 것
+
+```
+ERROR [linters_context] typechecking error: pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies
+```
+
 ### 그외 기타 규칙 적용하고 싶다면 github 링크에서 확인후 수정 바람.
 
 - [https://github.com/dnephin/pre-commit-golang](https://github.com/dnephin/pre-commit-golang)
