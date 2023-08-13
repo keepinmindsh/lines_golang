@@ -62,7 +62,6 @@ func (c Computer) ReturnFinalProduct() interface{} {
 }
 
 func NewComputerProcedure(resource Resource) MakeProcedure {
-
 	var realProduct product.Product
 
 	switch resource.Product {
