@@ -35,6 +35,12 @@ $ pre-commit install
 
 이후 부터 commit 시점에 사전 체크해서 수정 및 배포가 가능하다.
 
+### golangci-lint를 적용하고 싶다면,
+
+아래의 링크에서 golangci-lint 설치 진행
+
+- [https://golangci-lint.run/usage/install/](https://golangci-lint.run/usage/install/)
+
 ## 만약, .pre-commit-config.yaml 를 추가로 수정하는 경우
 
 ```
