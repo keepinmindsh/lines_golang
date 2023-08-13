@@ -41,6 +41,16 @@ $ pre-commit install
 
 - [https://golangci-lint.run/usage/install/](https://golangci-lint.run/usage/install/)
 
+### go-imports를 적용하고 싶다면,
+
+아래의 가이드에 따라서 go-import 설치 후 사용할 것
+
+- [https://pkg.go.dev/golang.org/x/tools/cmd/goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
+
+### 그외 기타 규칙 적용하고 싶다면 github 링크에서 확인후 수정 바람.
+
+- [https://github.com/dnephin/pre-commit-golang](https://github.com/dnephin/pre-commit-golang)
+
 ## 만약, .pre-commit-config.yaml 를 추가로 수정하는 경우
 
 ```
