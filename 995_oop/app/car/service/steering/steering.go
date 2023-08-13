@@ -1,13 +1,13 @@
 package steering
 
 import (
-	"design_pattern/oop/domain"
+	steeringDomain "design_pattern/oop/domain/steering"
 	"design_pattern/oop/internal/code"
 	"fmt"
 )
 
 type steering struct {
-	Vector domain.Vector
+	Vector steeringDomain.Vector
 }
 
 func (s *steering) RightDiagonal() {
@@ -25,11 +25,11 @@ func (s *steering) Strait() {
 	s.Vector = code.Straight
 }
 
-func (s *steering) CurrentVector() domain.Vector {
+func (s *steering) CurrentVector() steeringDomain.Vector {
 	return s.Vector
 }
 
-func NewSteering(vector domain.Vector) domain.Steering {
+func NewSteering(vector steeringDomain.Vector) steeringDomain.Steering {
 	return &steering{
 		Vector: vector,
 	}

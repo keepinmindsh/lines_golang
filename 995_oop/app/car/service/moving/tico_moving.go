@@ -2,7 +2,7 @@ package moving
 
 import (
 	"design_pattern/oop/app/maps"
-	"design_pattern/oop/domain"
+	movingDomain "design_pattern/oop/domain/moving"
 	"fmt"
 )
 
@@ -10,13 +10,13 @@ type ticoMoving struct {
 	maps *maps.Maps
 }
 
-func NewTicoMoving(maps *maps.Maps) domain.Moving {
+func NewTicoMoving(maps *maps.Maps) movingDomain.Moving {
 	return &ticoMoving{
 		maps: maps,
 	}
 }
 
-func (t *ticoMoving) Move() {
+func (t *ticoMoving) Move(moveOrder movingDomain.MoveOrder) {
 	colLength := len(t.maps.Coordinate)
 
 	if t.maps.CurrentX+1 < colLength {

@@ -1,9 +1,11 @@
 package code
 
-import "design_pattern/oop/domain"
+import (
+	steeringDomain "design_pattern/oop/domain/steering"
+)
 
 const (
-	Straight      domain.Vector = "0"
-	RightDiagonal domain.Vector = "+1"
-	LeftDiagonal  domain.Vector = "-1"
+	Straight      steeringDomain.Vector = "0"
+	RightDiagonal steeringDomain.Vector = "+1"
+	LeftDiagonal  steeringDomain.Vector = "-1"
 )
