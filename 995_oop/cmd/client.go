@@ -18,7 +18,7 @@ func main() {
 	steering := steeringSvc.NewSteering(vector)
 	moving := moving.NewMoving(domain.TICO, &newMaps)
 
-	myCar := car.NewCar(tire.NewTire(tire.NEXEN, steering, moving), steering, moving)
+	myCar := car.NewCar(tire.NewTire(tire.NEXEN, steering, moving), steering)
 
 	myCar.Start()
 
