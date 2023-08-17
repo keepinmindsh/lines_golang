@@ -59,6 +59,8 @@ Write Barrier - 특정 객체에 대한 참조가 생기는 경우에 수정을 
 
 메모리를 할당하고 헤제하는 과정에서 조각조각 난 메모리들이 잘 관리되지 않아 필요한 메모리보다 더 많이 사용하게 되는 현상 
 
+> [용어 - 메모리 단편화](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ljc8808&logNo=220303236020)
+
 #### Read Barrier for moving GC 
 
 #### TCMalloc 
