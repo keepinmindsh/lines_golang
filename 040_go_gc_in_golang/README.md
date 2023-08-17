@@ -45,3 +45,37 @@ CMS 를 Golang 에서는 고려하고 잇는데, STW 는 Latency 에는 좋지 �
 
 - Safefy : Property might be that the garbage collector will never collect an object that is still in use
 - Liveness : Property might be that it will eventually collect all garbage
+
+### Write Barrier 
+
+Write Barrier - 특정 객체에 대한 참조가 생기는 경우에 수정을 가하는 것 
+
+### Memory Allocation 
+
+- non-coping 
+- non-moving 
+
+#### Memory Fragmentation 
+
+메모리를 할당하고 헤제하는 과정에서 조각조각 난 메모리들이 잘 관리되지 않아 필요한 메모리보다 더 많이 사용하게 되는 현상 
+
+#### Read Barrier for moving GC 
+
+#### TCMalloc 
+
+- 스레드 캐쉬를 사용하는 메모리 할당자를 이용해서 메모리 단편화를 해결하고자 함. 
+
+### P, M, G 
+
+#### Goroutine의 스택 
+
+### Memory Allocation 
+
+- 작은 객체 : 각각 메모리사이즈별로 각각의 사이즈를 지정하게 되고 지정된 메모리끼리 각자 할당되게 되어 있음. 
+메모리 단편화 문제를 해소할 수 잇는 부분이 있음. 
+- 큰 객체 : 힙에서 관리함. 
+
+### Mark Bit, FreeList, Bitmap 
+
+
+> [2023 고퍼콘 2일차](https://www.youtube.com/watch?v=8AUVKh0qJgU&t=23357s)
