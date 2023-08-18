@@ -79,5 +79,33 @@ Write Barrier - 특정 객체에 대한 참조가 생기는 경우에 수정을 
 
 ### Mark Bit, FreeList, Bitmap 
 
+- Use Bitmap 
+- Mark Bit
+- FreeList 
+
+### Triggering GC 
+
+- Tradeoff GC
+  - Trade Off 가 있을 수 있음 
+
+GC를 적절하게 증가시키는 방법에 대해서 고려해야함. GC 주기에 따라서 CPU 사용률에 영향을 미치는 데, 아래의 항목에 제어 파라미터이다.  
+
+- GOGC 
+- Soft Memory Limit 
+
+> Help GC for memory allocation.      
+> force gc period ( 2min ).    
+
+### Performance 
+
+- Spawn per-P background worker with GOMAXPROCS 
+- Target 25% CPU Resources 
+- User Goroutine assist GC mark works 
+- CPU Limiter 
+
+### Preemption for STW 
+
+- Scheduler Call Preemption
+
 
 > [2023 고퍼콘 2일차](https://www.youtube.com/watch?v=8AUVKh0qJgU&t=23357s)
