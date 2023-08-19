@@ -7,6 +7,6 @@
 > [Mockery](https://github.com/vektra/mockery)
 > [Mockery V3](https://github.com/vektra/mockery/tree/v3)
 
-## SOLID Good Sample
+## SOLID Good Sample을 기초해서 코드 샘플 및 예시 작성하기
 
 > [SOLID in go](https://medium.com/@igorcarvalho.phone/go-lang-from-0-to-employed-84e64bc16068)
