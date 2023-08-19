@@ -6,36 +6,36 @@ import (
 	"fmt"
 )
 
-type ticoTire struct {
+type nexenTire struct {
 	moving     *moving.Moving
 	TireStatus tireDomain.Status
 }
 
 func NewTicoTire(moving *moving.Moving) tireDomain.Tire {
-	return &ticoTire{
+	return &nexenTire{
 		moving: moving,
 	}
 }
 
-func (v *ticoTire) Forward() {
+func (v *nexenTire) Forward() {
 	v.TireStatus = tireDomain.FOWARD
 
 	v.moving.Forward.Move()
 }
 
-func (v *ticoTire) Backward() {
+func (v *nexenTire) Backward() {
 	v.TireStatus = tireDomain.BACKWARD
 
 	v.moving.Backward.Move()
 }
 
-func (v *ticoTire) Stop() {
+func (v *nexenTire) Stop() {
 	v.TireStatus = tireDomain.STOP
 
 	fmt.Println("정지")
 }
 
-func (v *ticoTire) Start() {
+func (v *nexenTire) Start() {
 	v.TireStatus = tireDomain.START
 
 	fmt.Println("부릉")
