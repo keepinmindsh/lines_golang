@@ -8,9 +8,12 @@ import (
 	maps "design_pattern/oop/app/maps"
 	"design_pattern/oop/domain"
 	"design_pattern/oop/domain/steering"
+	"design_pattern/oop/internal/logger"
 )
 
 func main() {
+	logger.InitLogger()
+
 	newMaps := maps.NewMaps(10, 10)
 
 	var vector steering.Vector

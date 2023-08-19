@@ -19,7 +19,7 @@ func NewTire(tireName TireName, steering steering.Steering, moving moving.Moving
 	case KUMHO:
 		return nil
 	case NEXEN:
-		return tierUcase.NewNexenTire(steering, moving)
+		return tierUcase.NewTicoTire(steering, moving)
 	}
 
 	return nil

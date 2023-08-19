@@ -11,5 +11,5 @@ type MoveOrder struct {
 }
 
 type Moving interface {
-	Move(order MoveOrder)
+	Move()
 }
