@@ -25,7 +25,7 @@ func main() {
 	validate.NewValidater(&newMaps)
 
 	myCar := car.NewCar(
-		tire.NewTire(tire.NEXEN, moving),
+		tire.NewTire(tire.NEXEN, moving, &steering),
 		steering,
 	)
 
