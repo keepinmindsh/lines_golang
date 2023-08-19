@@ -6,6 +6,7 @@ import (
 	steeringSvc "design_pattern/oop/app/car/service/steering"
 	"design_pattern/oop/app/car/service/tire"
 	maps "design_pattern/oop/app/maps"
+	"design_pattern/oop/app/maps/validate"
 	"design_pattern/oop/domain"
 	"design_pattern/oop/domain/steering"
 	"design_pattern/oop/internal/logger"
@@ -21,7 +22,12 @@ func main() {
 	steering := steeringSvc.NewSteering(vector)
 	moving := moving.NewMoving(domain.TICO, &newMaps)
 
-	myCar := car.NewCar(tire.NewTire(tire.NEXEN, steering, moving), steering)
+	validate.NewValidater(&newMaps)
+
+	myCar := car.NewCar(
+		tire.NewTire(tire.NEXEN, moving),
+		steering,
+	)
 
 	myCar.Start()
 

@@ -2,21 +2,18 @@ package tire
 
 import (
 	"design_pattern/oop/app/car/service/moving"
-	"design_pattern/oop/domain/steering"
 	tireDomain "design_pattern/oop/domain/tire"
 	"fmt"
 )
 
 type ticoTire struct {
-	steering   steering.Steering
-	moving     moving.Moving
+	moving     *moving.Moving
 	TireStatus tireDomain.Status
 }
 
-func NewTicoTire(steering steering.Steering, moving moving.Moving) tireDomain.Tire {
+func NewTicoTire(moving *moving.Moving) tireDomain.Tire {
 	return &ticoTire{
-		steering: steering,
-		moving:   moving,
+		moving: moving,
 	}
 }
 
