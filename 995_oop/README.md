@@ -10,3 +10,5 @@
 ## SOLID Good Sample을 기초해서 코드 샘플 및 예시 작성하기
 
 > [SOLID in go](https://medium.com/@igorcarvalho.phone/go-lang-from-0-to-employed-84e64bc16068)
+
+> [LSP의 좋은 사례](https://hackernoon.com/go-design-patterns-an-introduction-to-solid)

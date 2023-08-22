@@ -33,6 +33,14 @@ func main() {
 
 	myCar.LeftDiagonal()
 	myCar.Forward()
+	myCar.Forward()
+	myCar.Forward()
+	myCar.Forward()
+	myCar.RightDiagonal()
+	myCar.Forward()
+	myCar.Forward()
+	myCar.Forward()
+	myCar.Forward()
 
 	myCar.Stop()
 }
