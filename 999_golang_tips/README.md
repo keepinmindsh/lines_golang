@@ -1,6 +1,73 @@
 # Go Study
 
-### Golang String 을 사용하는 6가지 Tips 
+### Golang 에서 Interface 를 노출 시키는 때, 서로 다른 패키지 경로에서 사용될 경우
+
+go의 인터페이스를 정의할 때, 함수 명을 소문자로 하여 정의하면 실제 내보내기 함수에 포함되지 않아서 에러가 발생하였음.
+
+- Wrong Case
+
+> '&Sample{}'(타입 *Sample)을(를) 타입 domain.Interface(으)로 사용할 수 없습니다 내보내기되지 않은
+> 메서드가 포함되고 다른 패키지에 정의되어 있기 때문에 타입이 'domain.Interface'을(를) 구현할 수 없습니다
+
+```go
+package app
+
+import "996_samples/interface/domain"
+
+type Sample struct {
+}
+
+func (s *Sample) print(value string) {
+
+}
+
+func (s *Sample) clone() domain.Interface {
+	return &Sample{}
+}
+
+```
+
+```
+package domain
+
+type Interface interface {
+	print(string)
+	clone() Interface
+}
+```
+
+- Right Cases
+
+> 동일 파일에 Interface, Implementation 이 같이 있다면 문제가 생기지는 않지만,
+> 패키지를 분리하는 경우에는 소문자로 정의된 함수는 외부내 내보낼수가 없이 때문에 컴파일 시점에 에러가 발생합니다.
+
+```
+package app
+
+import "996_samples/interface/domain"
+
+type Sample struct {
+}
+
+func (s *Sample) Print(value string) {
+
+}
+
+func (s *Sample) Clone() domain.Interface {
+	return &Sample{}
+}
+```
+
+```
+package domain
+
+type Interface interface {
+	Print(string)
+	Clone() Interface
+}
+```
+
+### Golang String 을 사용하는 6가지 Tips
 
 > [String 을 사용하는 6가지 Tips](https://www.calhoun.io/6-tips-for-using-strings-in-go/)
 
@@ -101,7 +168,7 @@ func TestPointer2() {
 	pointer = &example
 
 	fmt.Println(&example)
-	
+
 	// 포인터의 역참조 (*포인터변수명 = 대입값)
 	*pointer = 5
 
