@@ -1,4 +1,4 @@
-go 1.20
+go 1.21.0
 
 use (
 	./000_basic
@@ -41,4 +41,5 @@ use (
 	./995_oop
 	./996_samples
 	./997_designpattern
+	042_go_apache_beam
 )
